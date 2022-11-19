@@ -1,9 +1,9 @@
 import '../../styles/Home.css'
 import { useContext } from 'react'
-import { UserContext } from '../../contexts/UserContext'
+import { AuthContext } from '../../contexts/AuthContext'
 
 const Home = () => {
-  const { authenticated } = useContext(UserContext)
+  const { authenticated } = useContext(AuthContext)
 
   return (
     <div className="Home">

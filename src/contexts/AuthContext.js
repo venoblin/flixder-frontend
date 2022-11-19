@@ -2,9 +2,9 @@ import { createContext, useState, useEffect } from 'react'
 import useToggle from '../hooks/useToggle'
 import { CheckSession } from '../services/auth'
 
-export const UserContext = createContext()
+export const AuthContext = createContext()
 
-export const UserProvider = (props) => {
+export const AuthProvider = (props) => {
   const [authenticated, toggleAuthenticated] = useToggle(false)
   const [user, setUser] = useState(null)
 
@@ -22,7 +22,7 @@ export const UserProvider = (props) => {
   }, [])
 
   return (
-    <UserContext.Provider
+    <AuthContext.Provider
       value={{
         user,
         setUser,
@@ -31,6 +31,6 @@ export const UserProvider = (props) => {
       }}
     >
       {props.children}
-    </UserContext.Provider>
+    </AuthContext.Provider>
   )
 }

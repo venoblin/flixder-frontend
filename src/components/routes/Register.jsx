@@ -1,13 +1,13 @@
 import '../../styles/Register.css'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../../contexts/UserContext'
+import { AuthContext } from '../../contexts/AuthContext'
 import useForm from '../../hooks/useForm'
 import { RegisterUser } from '../../services/auth'
 import { inputChangeHandler } from '../../utils'
 
 const Register = () => {
-  const { setUser, toggleAuthenticated } = useContext(UserContext)
+  const { setUser, toggleAuthenticated } = useContext(AuthContext)
   const [formState, setFormState, resetFormState] = useForm({
     email: '',
     password: '',
