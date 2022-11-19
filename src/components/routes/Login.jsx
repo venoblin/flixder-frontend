@@ -1,13 +1,13 @@
 import '../../styles/Login.css'
 import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../contexts/AuthContext'
+import { UserContext } from '../../contexts/UserContext'
 import { SignInUser } from '../../services/auth'
 import useForm from '../../hooks/useForm'
 import { inputChangeHandler } from '../../utils'
 
 const Login = () => {
-  const { setUser, toggleAuthenticated } = useContext(AuthContext)
+  const { setUser, toggleAuthenticated } = useContext(UserContext)
   const [formState, setFormState, resetFormState] = useForm({
     email: '',
     password: ''

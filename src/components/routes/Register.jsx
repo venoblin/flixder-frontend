@@ -1,7 +1,5 @@
 import '../../styles/Register.css'
-import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../contexts/AuthContext'
 import useForm from '../../hooks/useForm'
 import { RegisterUser } from '../../services/auth'
 import { inputChangeHandler } from '../../utils'

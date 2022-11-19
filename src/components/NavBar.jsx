@@ -1,11 +1,11 @@
 import '../styles/NavBar.css'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { AuthContext } from '../contexts/AuthContext'
+import { UserContext } from '../contexts/UserContext'
 
 const NavBar = () => {
   const { setUser, authenticated, toggleAuthenticated } =
-    useContext(AuthContext)
+    useContext(UserContext)
 
   const handleLogout = () => {
     setUser(null)
