@@ -7,7 +7,6 @@ import { RegisterUser } from '../../services/auth'
 import { inputChangeHandler } from '../../utils'
 
 const Register = () => {
-  const { setUser, toggleAuthenticated } = useContext(AuthContext)
   const [formState, setFormState, resetFormState] = useForm({
     email: '',
     password: '',
@@ -23,12 +22,10 @@ const Register = () => {
       formState.confirmPassword &&
       formState.password === formState.confirmPassword
     ) {
-      const payload = await RegisterUser({
+      await RegisterUser({
         email: formState.email,
         password: formState.password
       })
-      setUser(payload)
-      toggleAuthenticated(true)
 
       navigate('/login')
     }
