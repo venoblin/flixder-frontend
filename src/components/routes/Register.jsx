@@ -1,13 +1,10 @@
 import '../../styles/Register.css'
-import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../../contexts/UserContext'
 import useForm from '../../hooks/useForm'
 import { RegisterUser } from '../../services/auth'
 import { inputChangeHandler } from '../../utils'
 
 const Register = () => {
-  const { setUser, toggleAuthenticated } = useContext(UserContext)
   const [formState, setFormState, resetFormState] = useForm({
     email: '',
     password: '',
@@ -23,12 +20,10 @@ const Register = () => {
       formState.confirmPassword &&
       formState.password === formState.confirmPassword
     ) {
-      const payload = await RegisterUser({
+      await RegisterUser({
         email: formState.email,
         password: formState.password
       })
-      setUser(payload)
-      toggleAuthenticated(true)
 
       navigate('/login')
     }
