@@ -18,4 +18,9 @@ export const checkboxChangeHandler = (evt, state, setState, key) => {
 }
 
 // checks if checkbox is in state array
-export const checkboxCheck = (evt, stateArr, checkbox) => {}
+export const checkboxCheck = (stateArr, check) => {
+  for (let state of stateArr) {
+    if (state === check) return true
+  }
+  return false
+}

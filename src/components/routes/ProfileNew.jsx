@@ -8,7 +8,11 @@ import {
   GetGenres
 } from '../../services/getServices'
 import useForm from '../../hooks/useForm'
-import { inputChangeHandler, checkboxChangeHandler } from '../../utils'
+import {
+  inputChangeHandler,
+  checkboxChangeHandler,
+  checkboxCheck
+} from '../../utils'
 
 const ProfileNew = () => {
   const { user } = useContext(UserContext)
@@ -117,19 +121,36 @@ const ProfileNew = () => {
 
           {providers.map((provider) => (
             <div key={provider._id}>
-              <input
-                type="checkbox"
-                id={provider._id}
-                name={provider._id}
-                onChange={(evt) =>
-                  checkboxChangeHandler(
-                    evt,
-                    formState,
-                    setFormState,
-                    'providers'
-                  )
-                }
-              />
+              {checkboxCheck(formState.providers, provider._id) ? (
+                <input
+                  type="checkbox"
+                  id={provider._id}
+                  name={provider._id}
+                  checked
+                  onChange={(evt) =>
+                    checkboxChangeHandler(
+                      evt,
+                      formState,
+                      setFormState,
+                      'providers'
+                    )
+                  }
+                />
+              ) : (
+                <input
+                  type="checkbox"
+                  id={provider._id}
+                  name={provider._id}
+                  onChange={(evt) =>
+                    checkboxChangeHandler(
+                      evt,
+                      formState,
+                      setFormState,
+                      'providers'
+                    )
+                  }
+                />
+              )}
 
               <label htmlFor={provider._id}>{provider.provider_name}</label>
             </div>
