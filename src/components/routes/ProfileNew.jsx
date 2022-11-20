@@ -116,7 +116,7 @@ const ProfileNew = () => {
           </select>
         </div>
 
-        <div className="providers">
+        <div className="providers-container">
           <h2>Watch Providers</h2>
 
           {providers.map((provider) => (
@@ -153,6 +153,47 @@ const ProfileNew = () => {
               )}
 
               <label htmlFor={provider._id}>{provider.provider_name}</label>
+            </div>
+          ))}
+        </div>
+
+        <div className="genres-container">
+          <h2>Favorite Genres</h2>
+
+          {genres.map((genre) => (
+            <div key={genre._id}>
+              {checkboxCheck(formState.fav_genres, genre._id) ? (
+                <input
+                  type="checkbox"
+                  id={genre._id}
+                  name={genre._id}
+                  checked
+                  onChange={(evt) =>
+                    checkboxChangeHandler(
+                      evt,
+                      formState,
+                      setFormState,
+                      'fav_genres'
+                    )
+                  }
+                />
+              ) : (
+                <input
+                  type="checkbox"
+                  id={genre._id}
+                  name={genre._id}
+                  onChange={(evt) =>
+                    checkboxChangeHandler(
+                      evt,
+                      formState,
+                      setFormState,
+                      'fav_genres'
+                    )
+                  }
+                />
+              )}
+
+              <label htmlFor={genre._id}>{genre.name}</label>
             </div>
           ))}
         </div>
