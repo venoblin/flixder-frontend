@@ -3,9 +3,19 @@ export const inputChangeHandler = (evt, state, setState) => {
   setState({ ...state, [target.name]: target.value })
 }
 
+// adds and removes checkbox to state array
 export const checkboxChangeHandler = (evt, state, setState, key) => {
   const target = evt.target
+  const arr = [...state[key]]
 
-  const arr = [...state[key]].push(target.id)
-  setState({ ...state, [state[key]]: arr })
+  if (target.checked) {
+    arr.push(target.id)
+    setState({ ...state, [key]: [...arr] })
+  } else {
+    const filtered = arr.filter((provider) => provider !== target.id)
+    setState({ ...state, [key]: [...filtered] })
+  }
 }
+
+// checks if checkbox is in state array
+export const checkboxCheck = (evt, stateArr, checkbox) => {}
