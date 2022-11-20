@@ -14,7 +14,7 @@ const Login = () => {
   })
   let navigate = useNavigate()
 
-  const handleSubmit = async (evt) => {
+  const submitHandler = async (evt) => {
     evt.preventDefault()
 
     try {
@@ -33,7 +33,7 @@ const Login = () => {
     <div className="Login">
       <h2>Login</h2>
 
-      <form onSubmit={(evt) => handleSubmit(evt)}>
+      <form onSubmit={(evt) => submitHandler(evt)}>
         <label htmlFor="email">Email</label>
         <input
           type="email"

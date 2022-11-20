@@ -2,6 +2,7 @@ import '../../styles/ProfileNew.css'
 import { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../../contexts/UserContext'
 import {
+  PostProfile,
   GetRegions,
   GetProviders,
   GetImages,
@@ -15,7 +16,7 @@ import {
 } from '../../utils'
 
 const ProfileNew = () => {
-  const { user } = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext)
   const [formState, setFormState, resetFormState] = useForm({
     name: 'Main',
     profile_pic: '635484ed14c0720b4276ffd5',
@@ -46,6 +47,13 @@ const ProfileNew = () => {
       .catch((err) => console.log(err))
   }
 
+  const submitHandler = async (evt) => {
+    evt.preventDefault()
+
+    const newUser = await PostProfile(formState, user)
+    setUser(newUser)
+  }
+
   useEffect(() => {
     getFormOptions()
   }, [])
@@ -54,7 +62,7 @@ const ProfileNew = () => {
     <div className="ProfileNew">
       <h2>Create a profile!</h2>
 
-      <form>
+      <form onSubmit={(evt) => submitHandler(evt)}>
         <div className="pics-container">
           {images.map((img) => (
             <div className="pic" key={img._id}>

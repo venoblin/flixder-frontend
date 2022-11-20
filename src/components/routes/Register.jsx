@@ -12,7 +12,7 @@ const Register = () => {
   })
   let navigate = useNavigate()
 
-  const handleSubmit = async (evt) => {
+  const submitHandler = async (evt) => {
     evt.preventDefault()
 
     if (
@@ -35,7 +35,7 @@ const Register = () => {
     <div className="Register">
       <h2>Register</h2>
 
-      <form onSubmit={(evt) => handleSubmit(evt)}>
+      <form onSubmit={(evt) => submitHandler(evt)}>
         <label htmlFor="email">Email</label>
         <input
           type="email"
