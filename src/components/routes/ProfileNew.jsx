@@ -13,7 +13,7 @@ import { inputChangeHandler } from '../../utils'
 const ProfileNew = () => {
   const { user } = useContext(UserContext)
   const [formState, setFormState, resetFormState] = useForm({
-    profile_pic: '',
+    profile_pic: '635484ed14c0720b4276ffd5',
     region: '',
     providers: [],
     fav_genres: []
@@ -49,7 +49,42 @@ const ProfileNew = () => {
     <div className="ProfileNew">
       <h2>Create a profile!</h2>
 
-      <form></form>
+      <form>
+        <div className="pics-container">
+          {images.map((img) => (
+            <div className="pic" key={img._id}>
+              {formState.profile_pic === img._id ? (
+                <input
+                  type="radio"
+                  name="profile_pic"
+                  id={img._id}
+                  value={img._id}
+                  checked
+                  onChange={(evt) =>
+                    inputChangeHandler(evt, formState, setFormState)
+                  }
+                />
+              ) : (
+                <input
+                  type="radio"
+                  name="profile_pic"
+                  id={img._id}
+                  value={img._id}
+                  onChange={(evt) =>
+                    inputChangeHandler(evt, formState, setFormState)
+                  }
+                />
+              )}
+
+              <label htmlFor={img._id}>
+                <img src={img.url} alt={img.title} />
+              </label>
+            </div>
+          ))}
+        </div>
+
+        <button type="submit">Create</button>
+      </form>
     </div>
   )
 }
