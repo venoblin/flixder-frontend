@@ -1,6 +1,10 @@
+form .pics-container {
+  display: flex;
+  flex-wrap: wrap;
+}
 form .pics-container img {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;

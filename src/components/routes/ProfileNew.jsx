@@ -8,13 +8,14 @@ import {
   GetGenres
 } from '../../services/getServices'
 import useForm from '../../hooks/useForm'
-import { inputChangeHandler } from '../../utils'
+import { inputChangeHandler, checkboxChangeHandler } from '../../utils'
 
 const ProfileNew = () => {
   const { user } = useContext(UserContext)
   const [formState, setFormState, resetFormState] = useForm({
+    name: 'Main',
     profile_pic: '635484ed14c0720b4276ffd5',
-    region: '',
+    region: '6352c64f9879eee933e71121',
     providers: [],
     fav_genres: []
   })
@@ -79,6 +80,58 @@ const ProfileNew = () => {
               <label htmlFor={img._id}>
                 <img src={img.url} alt={img.title} />
               </label>
+            </div>
+          ))}
+        </div>
+
+        <div className="main">
+          <label htmlFor="name">Name</label>
+          <input
+            onChange={(evt) => inputChangeHandler(evt, formState, setFormState)}
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Profile name"
+            value={formState.name}
+            required
+          />
+
+          <label htmlFor="region">Choose a region:</label>
+          <select
+            onChange={(evt) => inputChangeHandler(evt, formState, setFormState)}
+            name="region"
+            id="region"
+            value={formState.region}
+            required
+          >
+            {regions.map((region) => (
+              <option key={region._id} value={region._id}>
+                {region.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="providers">
+          <h2>Watch Providers</h2>
+
+          {providers.map((provider) => (
+            <div key={provider._id}>
+              <input
+                type="checkbox"
+                id={provider._id}
+                name={provider._id}
+                onChange={(evt) =>
+                  checkboxChangeHandler(
+                    evt,
+                    formState,
+                    setFormState,
+                    'providers'
+                  )
+                }
+              />
+
+              <label htmlFor={provider._id}>{provider.provider_name}</label>
             </div>
           ))}
         </div>
