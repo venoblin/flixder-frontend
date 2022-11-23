@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContext'
 
 const NavBar = () => {
-  const { setUser, authenticated, toggleAuthenticated } =
-    useContext(UserContext)
-
-  const handleLogout = () => {
-    setUser(null)
-    toggleAuthenticated()
-    localStorage.clear()
-  }
+  const {
+    setUser,
+    profiles,
+    currentProfile,
+    authenticated,
+    toggleAuthenticated,
+    handleLogout
+  } = useContext(UserContext)
 
   return (
     <nav className="NavBar">
@@ -24,7 +24,7 @@ const NavBar = () => {
           </div>
         ) : (
           <div>
-            <Link to="/login">Log In</Link>
+            <Link to="/login">Sign In</Link>
           </div>
         )}
       </div>

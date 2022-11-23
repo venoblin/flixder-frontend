@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'
 
 const ProfileSelector = (props) => {
-  const { updateSelectedProfile } = useContext(UserContext)
+  const { updateCurrentProfile } = useContext(UserContext)
 
   return (
     <div className="ProfileSelector">
@@ -14,7 +14,7 @@ const ProfileSelector = (props) => {
           <div
             key={profile._id}
             className="profile-card"
-            onClick={() => updateSelectedProfile(profile)}
+            onClick={() => updateCurrentProfile(profile)}
           >
             <img
               src={profile.profile_pic.url}

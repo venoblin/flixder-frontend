@@ -8,11 +8,19 @@ export const UserContext = createContext()
 export const UserProvider = (props) => {
   const [authenticated, toggleAuthenticated] = useToggle(false)
   const [user, setUser] = useState(null)
-  const [profiles, setProfiles] = useState([])
-  const [selectedProfile, setSelectedProfile] = useState(null)
+  const [profiles, setProfiles] = useState(null)
+  const [currentProfile, setCurrentProfile] = useState(null)
 
-  const updateSelectedProfile = (profile) => {
-    setSelectedProfile(profile)
+  const handleLogout = () => {
+    setUser(null)
+    setProfiles(null)
+    setCurrentProfile(null)
+    toggleAuthenticated()
+    localStorage.clear()
+  }
+
+  const updateCurrentProfile = (profile) => {
+    setCurrentProfile(profile)
     localStorage.setItem('profile_id', profile._id)
   }
 
@@ -26,7 +34,7 @@ export const UserProvider = (props) => {
       const currentProfile = userProfiles.filter(
         (profile) => profile._id === storedProfileId
       )
-      setSelectedProfile({ ...currentProfile })
+      setCurrentProfile({ ...currentProfile })
     }
   }
 
@@ -52,10 +60,11 @@ export const UserProvider = (props) => {
         setUser,
         profiles,
         updateProfiles,
-        selectedProfile,
-        updateSelectedProfile,
+        currentProfile,
+        updateCurrentProfile,
         authenticated,
-        toggleAuthenticated
+        toggleAuthenticated,
+        handleLogout
       }}
     >
       {props.children}

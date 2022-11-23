@@ -5,7 +5,7 @@ import { UserContext } from '../../contexts/UserContext'
 import ProfileSelector from '../ProfileSelector'
 
 const Home = () => {
-  const { user, profiles, selectedProfile, authenticated } =
+  const { user, profiles, currentProfile, authenticated } =
     useContext(UserContext)
 
   return (
@@ -13,7 +13,7 @@ const Home = () => {
       {authenticated ? (
         <div>
           {profiles && profiles.length ? (
-            selectedProfile ? (
+            currentProfile ? (
               <div>Finder</div>
             ) : (
               <div>
