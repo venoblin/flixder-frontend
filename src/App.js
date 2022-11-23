@@ -19,8 +19,6 @@ const App = () => {
         </header>
       )}
 
-      <h1>Flixder</h1>
-
       {authenticated ? (
         <Routes>
           <Route path="/" element={<Home />} />

@@ -5,17 +5,22 @@ import { UserContext } from '../../contexts/UserContext'
 import ProfileSelector from '../ProfileSelector'
 
 const Home = () => {
-  const { user, profiles, authenticated } = useContext(UserContext)
+  const { user, profiles, selectedProfile, authenticated } =
+    useContext(UserContext)
 
   return (
     <div className="Home">
       {authenticated ? (
         <div>
           {profiles && profiles.length ? (
-            <div>
-              <ProfileSelector profiles={profiles} />
-              <Link to="/profiles/new">Create Profile</Link>
-            </div>
+            selectedProfile ? (
+              <div>Finder</div>
+            ) : (
+              <div>
+                <ProfileSelector profiles={profiles} />
+                <Link to="/profiles/new">Create Profile</Link>
+              </div>
+            )
           ) : (
             <div>
               <p>Create a profile to start searching!</p>

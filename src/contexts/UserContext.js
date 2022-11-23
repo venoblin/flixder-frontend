@@ -8,11 +8,26 @@ export const UserContext = createContext()
 export const UserProvider = (props) => {
   const [authenticated, toggleAuthenticated] = useToggle(false)
   const [user, setUser] = useState(null)
-  const [profiles, setProfiles] = useState(null)
+  const [profiles, setProfiles] = useState([])
+  const [selectedProfile, setSelectedProfile] = useState(null)
+
+  const updateSelectedProfile = (profile) => {
+    setSelectedProfile(profile)
+    localStorage.setItem('profile_id', profile._id)
+  }
 
   const updateProfiles = async (thisUser = user) => {
     const userProfiles = await GetUserProfiles(thisUser)
     setProfiles(userProfiles)
+
+    const storedProfileId = localStorage.getItem('profile_id')
+
+    if (storedProfileId) {
+      const currentProfile = userProfiles.filter(
+        (profile) => profile._id === storedProfileId
+      )
+      setSelectedProfile({ ...currentProfile })
+    }
   }
 
   const checkToken = async () => {
@@ -37,6 +52,8 @@ export const UserProvider = (props) => {
         setUser,
         profiles,
         updateProfiles,
+        selectedProfile,
+        updateSelectedProfile,
         authenticated,
         toggleAuthenticated
       }}
