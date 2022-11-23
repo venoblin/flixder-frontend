@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom'
 import { UserContext } from '../../contexts/UserContext'
 
 const Home = () => {
-  const { user, authenticated } = useContext(UserContext)
+  const { user, profiles, authenticated } = useContext(UserContext)
 
   return (
     <div className="Home">
       {authenticated ? (
         <div>
-          {user.profiles.length ? (
+          {profiles && profiles.length ? (
             'Profiles'
           ) : (
             <div>

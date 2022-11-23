@@ -50,6 +50,7 @@ const ProfileNew = () => {
   const submitHandler = async (evt) => {
     evt.preventDefault()
 
+    console.log(user)
     const newUser = await PostProfile(formState, user)
     setUser(newUser)
   }

@@ -39,14 +39,23 @@ export const GetGenres = async () => {
 export const PostProfile = async (data, user) => {
   try {
     const profileRes = await Client.post('/api/profiles', data)
+    const userRes = await Client.get(`/api/users/${user.id}`)
 
-    const newProfiles = [...user.profiles]
-    newProfiles.push(profileRes.data._id)
-
-    const userRes = await Client.put(`/api/users/${user.id}`, {
-      profiles: newProfiles
+    const res = await Client.put(`/api/users/${user.id}`, {
+      profiles: [...userRes.data.profiles, profileRes.data._id]
     })
+
     return userRes.data
+  } catch (err) {
+    throw err
+  }
+}
+
+export const GetUserProfiles = async (user) => {
+  try {
+    const res = await Client.get(`/api/users/${user.id}`)
+
+    return res.data.profiles
   } catch (err) {
     throw err
   }

@@ -60,6 +60,7 @@ const Register = () => {
         <input
           type="password"
           id="confirmPassword"
+          name="confirmPassword"
           required
           value={formState.confirmPassword}
           onChange={(evt) => inputChangeHandler(evt, formState, setFormState)}
