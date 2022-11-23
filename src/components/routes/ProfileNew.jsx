@@ -7,7 +7,7 @@ import {
   GetProviders,
   GetImages,
   GetGenres
-} from '../../services/getServices'
+} from '../../services/services'
 import useForm from '../../hooks/useForm'
 import {
   inputChangeHandler,
