@@ -1,0 +1,15 @@
+.ProfileSelector .profiles {
+  display: flex;
+  flex-wrap: wrap;
+}
+.ProfileSelector .profile-card {
+  cursor: pointer;
+}
+.ProfileSelector img {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}/*# sourceMappingURL=ProfileSelector.css.map */

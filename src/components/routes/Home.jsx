@@ -2,6 +2,7 @@ import '../../styles/Home.css'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../contexts/UserContext'
+import ProfileSelector from '../ProfileSelector'
 
 const Home = () => {
   const { user, profiles, authenticated } = useContext(UserContext)
@@ -11,7 +12,7 @@ const Home = () => {
       {authenticated ? (
         <div>
           {profiles && profiles.length ? (
-            'Profiles'
+            <ProfileSelector profiles={profiles} />
           ) : (
             <div>
               <p>Create a profile to start searching!</p>
