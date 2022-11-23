@@ -12,7 +12,10 @@ const Home = () => {
       {authenticated ? (
         <div>
           {profiles && profiles.length ? (
-            <ProfileSelector profiles={profiles} />
+            <div>
+              <ProfileSelector profiles={profiles} />
+              <Link to="/profiles/new">Create Profile</Link>
+            </div>
           ) : (
             <div>
               <p>Create a profile to start searching!</p>
