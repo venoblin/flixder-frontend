@@ -1,36 +1,35 @@
 import '../../styles/Home.css'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../contexts/UserContext'
 import ProfileSelector from '../ProfileSelector'
 
 const Home = () => {
-  const { user, profiles, currentProfile, authenticated } =
+  const { user, profiles, updateProfiles, currentProfile } =
     useContext(UserContext)
+
+  useEffect(() => {
+    updateProfiles()
+  }, [])
 
   return (
     <div className="Home">
-      {authenticated ? (
+      {currentProfile ? (
+        <div>Finder</div>
+      ) : (
         <div>
-          {profiles && profiles.length ? (
-            currentProfile ? (
-              <div>Finder</div>
-            ) : (
+          {profiles &&
+            (profiles.length ? (
               <div>
                 <ProfileSelector profiles={profiles} />
                 <Link to="/profiles/new">Create Profile</Link>
               </div>
-            )
-          ) : (
-            <div>
-              <p>Create a profile to start searching!</p>
-              <Link to="/profiles/new">Create Profile</Link>
-            </div>
-          )}
-        </div>
-      ) : (
-        <div>
-          <p>You are not signed in!</p>
+            ) : (
+              <div>
+                <p>Create a profile to start searching!</p>
+                <Link to="/profiles/new">Create Profile</Link>
+              </div>
+            ))}
         </div>
       )}
     </div>
