@@ -34,7 +34,7 @@ export const UserProvider = (props) => {
       const currentProfile = userProfiles.filter(
         (profile) => profile._id === storedProfileId
       )
-      setCurrentProfile({ ...currentProfile })
+      setCurrentProfile(currentProfile[0])
     }
   }
 

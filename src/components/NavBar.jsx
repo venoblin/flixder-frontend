@@ -4,29 +4,46 @@ import { Link } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContext'
 
 const NavBar = () => {
-  const {
-    setUser,
-    profiles,
-    currentProfile,
-    authenticated,
-    toggleAuthenticated,
-    handleLogout
-  } = useContext(UserContext)
+  const { profiles, currentProfile, updateCurrentProfile, handleLogout } =
+    useContext(UserContext)
 
   return (
     <nav className="NavBar">
       <Link to="/">Flixder</Link>
 
       <div className="right-wrapper">
-        {authenticated ? (
-          <div>
-            <Link onClick={handleLogout}>Sign Out</Link>
-          </div>
-        ) : (
-          <div>
-            <Link to="/login">Sign In</Link>
+        {currentProfile && profiles && (
+          <div className="profile-switcher">
+            <div className="current profile">
+              <img
+                src={currentProfile.profile_pic.url}
+                alt={`${currentProfile.name} ${currentProfile.profile_pic.name}`}
+              />
+            </div>
+
+            <div className="other-profiles">
+              {profiles.map(
+                (profile) =>
+                  profile._id !== currentProfile._id && (
+                    <div
+                      key={profile._id}
+                      className="profile"
+                      onClick={() => updateCurrentProfile(profile)}
+                    >
+                      <img
+                        src={profile.profile_pic.url}
+                        alt={`${profile.name} ${profile.profile_pic.name}`}
+                      />
+                    </div>
+                  )
+              )}
+            </div>
           </div>
         )}
+
+        <div>
+          <Link onClick={handleLogout}>Sign Out</Link>
+        </div>
       </div>
     </nav>
   )
