@@ -35,3 +35,28 @@ export const GetGenres = async () => {
     throw err
   }
 }
+
+export const PostProfile = async (data, user) => {
+  try {
+    const profileRes = await Client.post('/api/profiles', data)
+    const userRes = await Client.get(`/api/users/${user.id}`)
+
+    const res = await Client.put(`/api/users/${user.id}`, {
+      profiles: [...userRes.data.profiles, profileRes.data._id]
+    })
+
+    return userRes.data
+  } catch (err) {
+    throw err
+  }
+}
+
+export const GetUserProfiles = async (user) => {
+  try {
+    const res = await Client.get(`/api/users/${user.id}`)
+
+    return res.data.profiles
+  } catch (err) {
+    throw err
+  }
+}

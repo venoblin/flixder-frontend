@@ -1,12 +1,14 @@
 import '../../styles/ProfileNew.css'
 import { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../../contexts/UserContext'
+import { useNavigate } from 'react-router-dom'
 import {
+  PostProfile,
   GetRegions,
   GetProviders,
   GetImages,
   GetGenres
-} from '../../services/getServices'
+} from '../../services/services'
 import useForm from '../../hooks/useForm'
 import {
   inputChangeHandler,
@@ -15,9 +17,9 @@ import {
 } from '../../utils'
 
 const ProfileNew = () => {
-  const { user } = useContext(UserContext)
+  const { user, setUser, updateProfiles } = useContext(UserContext)
   const [formState, setFormState, resetFormState] = useForm({
-    name: 'Main',
+    name: '',
     profile_pic: '635484ed14c0720b4276ffd5',
     region: '6352c64f9879eee933e71121',
     providers: [],
@@ -27,6 +29,7 @@ const ProfileNew = () => {
   const [providers, setProviders] = useState([])
   const [images, setImages] = useState([])
   const [genres, setGenres] = useState([])
+  let navigate = useNavigate()
 
   const getFormOptions = () => {
     GetRegions()
@@ -46,6 +49,15 @@ const ProfileNew = () => {
       .catch((err) => console.log(err))
   }
 
+  const submitHandler = async (evt) => {
+    evt.preventDefault()
+
+    await PostProfile(formState, user)
+    updateProfiles()
+    resetFormState()
+    navigate('/')
+  }
+
   useEffect(() => {
     getFormOptions()
   }, [])
@@ -54,7 +66,7 @@ const ProfileNew = () => {
     <div className="ProfileNew">
       <h2>Create a profile!</h2>
 
-      <form>
+      <form onSubmit={(evt) => submitHandler(evt)}>
         <div className="pics-container">
           {images.map((img) => (
             <div className="pic" key={img._id}>
@@ -116,7 +128,7 @@ const ProfileNew = () => {
           </select>
         </div>
 
-        <div className="providers">
+        <div className="providers-container">
           <h2>Watch Providers</h2>
 
           {providers.map((provider) => (
@@ -153,6 +165,47 @@ const ProfileNew = () => {
               )}
 
               <label htmlFor={provider._id}>{provider.provider_name}</label>
+            </div>
+          ))}
+        </div>
+
+        <div className="genres-container">
+          <h2>Favorite Genres</h2>
+
+          {genres.map((genre) => (
+            <div key={genre._id}>
+              {checkboxCheck(formState.fav_genres, genre._id) ? (
+                <input
+                  type="checkbox"
+                  id={genre._id}
+                  name={genre._id}
+                  checked
+                  onChange={(evt) =>
+                    checkboxChangeHandler(
+                      evt,
+                      formState,
+                      setFormState,
+                      'fav_genres'
+                    )
+                  }
+                />
+              ) : (
+                <input
+                  type="checkbox"
+                  id={genre._id}
+                  name={genre._id}
+                  onChange={(evt) =>
+                    checkboxChangeHandler(
+                      evt,
+                      formState,
+                      setFormState,
+                      'fav_genres'
+                    )
+                  }
+                />
+              )}
+
+              <label htmlFor={genre._id}>{genre.name}</label>
             </div>
           ))}
         </div>
