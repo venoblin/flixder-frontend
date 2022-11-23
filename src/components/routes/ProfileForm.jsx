@@ -1,6 +1,7 @@
 import '../../styles/ProfileNew.css'
 import { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../../contexts/UserContext'
+import { useNavigate } from 'react-router-dom'
 import {
   PostProfile,
   GetRegions,
@@ -16,9 +17,9 @@ import {
 } from '../../utils'
 
 const ProfileNew = () => {
-  const { user, setUser } = useContext(UserContext)
+  const { user, setUser, updateProfiles } = useContext(UserContext)
   const [formState, setFormState, resetFormState] = useForm({
-    name: 'Main',
+    name: '',
     profile_pic: '635484ed14c0720b4276ffd5',
     region: '6352c64f9879eee933e71121',
     providers: [],
@@ -28,6 +29,7 @@ const ProfileNew = () => {
   const [providers, setProviders] = useState([])
   const [images, setImages] = useState([])
   const [genres, setGenres] = useState([])
+  let navigate = useNavigate()
 
   const getFormOptions = () => {
     GetRegions()
@@ -50,9 +52,10 @@ const ProfileNew = () => {
   const submitHandler = async (evt) => {
     evt.preventDefault()
 
-    console.log(user)
-    const newUser = await PostProfile(formState, user)
-    setUser(newUser)
+    await PostProfile(formState, user)
+    updateProfiles()
+    resetFormState()
+    navigate('/')
   }
 
   useEffect(() => {
