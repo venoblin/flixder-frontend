@@ -1,11 +1,17 @@
 import '../styles/NavBar.css'
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContext'
 
-const NavBar = () => {
+const NavBar = (props) => {
   const { profiles, currentProfile, updateCurrentProfile, handleLogout } =
     useContext(UserContext)
+  let navigate = useNavigate()
+
+  const profileSwitchHandler = (profile) => {
+    updateCurrentProfile(profile)
+    navigate('/')
+  }
 
   return (
     <nav className="NavBar">
@@ -28,7 +34,7 @@ const NavBar = () => {
                     <div
                       key={profile._id}
                       className="profile"
-                      onClick={() => updateCurrentProfile(profile)}
+                      onClick={() => profileSwitchHandler(profile)}
                     >
                       <img
                         src={profile.profile_pic.url}

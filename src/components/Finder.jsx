@@ -15,13 +15,14 @@ const Finder = () => {
 
   useEffect(() => {
     getMovies()
-  }, [])
+  }, [currentProfile])
 
   return (
     <div className="Finder">
       <h1>Finder</h1>
 
-      {movies && movies.map((movie) => <MovieCard movie={movie} />)}
+      {movies &&
+        movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
     </div>
   )
 }

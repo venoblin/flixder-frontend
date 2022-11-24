@@ -6,8 +6,7 @@ import ProfileSelector from '../ProfileSelector'
 import Finder from '../Finder'
 
 const Home = () => {
-  const { user, profiles, updateProfiles, currentProfile } =
-    useContext(UserContext)
+  const { profiles, updateProfiles, currentProfile } = useContext(UserContext)
 
   useEffect(() => {
     updateProfiles()
