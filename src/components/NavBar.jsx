@@ -27,7 +27,7 @@ const NavBar = (props) => {
               />
             </div>
 
-            <div className="other-profiles">
+            <div className="drop-down">
               {profiles.map(
                 (profile) =>
                   profile._id !== currentProfile._id && (
@@ -43,6 +43,8 @@ const NavBar = (props) => {
                     </div>
                   )
               )}
+
+              <Link to="/profiles/new">Create Profile</Link>
             </div>
           </div>
         )}
