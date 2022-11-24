@@ -2,6 +2,7 @@ import '../styles/Finder.css'
 import { useEffect, useState, useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'
 import { GetTmdbMovies } from '../services/tmdbServices'
+import MovieCard from './MovieCard'
 
 const Finder = () => {
   const { currentProfile } = useContext(UserContext)
@@ -19,6 +20,8 @@ const Finder = () => {
   return (
     <div className="Finder">
       <h1>Finder</h1>
+
+      {movies && movies.map((movie) => <MovieCard movie={movie} />)}
     </div>
   )
 }
