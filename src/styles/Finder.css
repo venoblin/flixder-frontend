@@ -1,1 +1,5 @@
-/*# sourceMappingURL=Finder.css.map */
+.Finder .movies-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}/*# sourceMappingURL=Finder.css.map */

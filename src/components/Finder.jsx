@@ -21,8 +21,12 @@ const Finder = () => {
     <div className="Finder">
       <h1>Finder</h1>
 
-      {movies &&
-        movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+      <div className="movies-container">
+        {movies &&
+          movies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} findMode={true} />
+          ))}
+      </div>
     </div>
   )
 }
