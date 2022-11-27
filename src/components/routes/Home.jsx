@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../contexts/UserContext'
 import ProfileSelector from '../ProfileSelector'
-import Finder from '../Finder'
 
 const Home = () => {
   const { profiles, updateProfiles, currentProfile } = useContext(UserContext)
@@ -15,7 +14,7 @@ const Home = () => {
   return (
     <div className="Home">
       {currentProfile ? (
-        <Finder />
+        <div>Current Profile</div>
       ) : (
         <div>
           {profiles &&
