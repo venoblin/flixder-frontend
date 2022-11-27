@@ -1,8 +1,20 @@
-.Profile img {
+.Profile .profile-card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: gray;
+}
+.Profile .profile-card .profile-pic {
   width: 200px;
   height: 200px;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
+}
+.Profile .profile-card .flag {
+  width: 75px;
+}
+.Profile .profile-card .provider-logo {
+  width: 50px;
 }/*# sourceMappingURL=Profile.css.map */
