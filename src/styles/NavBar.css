@@ -22,4 +22,8 @@
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
+}
+.NavBar .profile-switcher .links {
+  display: flex;
+  flex-direction: column;
 }/*# sourceMappingURL=NavBar.css.map */

@@ -26,5 +26,10 @@
       object-fit: cover;
       object-position: center;
     }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }

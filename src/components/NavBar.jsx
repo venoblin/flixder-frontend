@@ -10,7 +10,7 @@ const NavBar = (props) => {
 
   const profileSwitchHandler = (profile) => {
     updateCurrentProfile(profile)
-    navigate('/')
+    navigate('/find')
   }
 
   return (
@@ -44,14 +44,13 @@ const NavBar = (props) => {
                   )
               )}
 
-              <Link to="/profiles/new">Create Profile</Link>
+              <div className="links">
+                <Link to="/profiles/new">Create Profile</Link>
+                <Link onClick={handleLogout}>Sign Out</Link>
+              </div>
             </div>
           </div>
         )}
-
-        <div>
-          <Link onClick={handleLogout}>Sign Out</Link>
-        </div>
       </div>
     </nav>
   )
