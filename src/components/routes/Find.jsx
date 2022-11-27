@@ -1,4 +1,4 @@
-import '../styles/Find.css'
+import '../../styles/Find.css'
 import { useEffect, useState, useContext } from 'react'
 import { UserContext } from '../../contexts/UserContext'
 import { GetTmdbMovies } from '../../services/tmdbServices'
