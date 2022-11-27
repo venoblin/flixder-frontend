@@ -1,8 +1,10 @@
 .Profile .profile-card {
   width: 100%;
+  background-color: gray;
+}
+.Profile .profile-card .profile-info {
   display: flex;
   justify-content: center;
-  background-color: gray;
 }
 .Profile .profile-card .profile-pic {
   width: 200px;
@@ -17,4 +19,7 @@
 }
 .Profile .profile-card .provider-logo {
   width: 50px;
+}
+.Profile .profile-card .btn {
+  margin: 0 auto;
 }/*# sourceMappingURL=Profile.css.map */
