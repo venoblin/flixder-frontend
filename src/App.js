@@ -20,18 +20,20 @@ const App = () => {
         </header>
       )}
 
-      {authenticated ? (
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/find" element={<Find />} />
-          <Route path="/profiles/new" element={<ProfileForm />} />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route path="/register" element={<Register />} />
-          <Route path="*" element={<Login />} />
-        </Routes>
-      )}
+      <main>
+        {authenticated ? (
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/find" element={<Find />} />
+            <Route path="/profiles/new" element={<ProfileForm />} />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route path="/register" element={<Register />} />
+            <Route path="*" element={<Login />} />
+          </Routes>
+        )}
+      </main>
     </div>
   )
 }

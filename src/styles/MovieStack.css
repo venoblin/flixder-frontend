@@ -1,1 +1,7 @@
-/*# sourceMappingURL=MovieStack.css.map */
+.MovieStack {
+  width: 100%;
+  height: 700px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}/*# sourceMappingURL=MovieStack.css.map */

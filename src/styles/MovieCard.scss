@@ -1,15 +1,24 @@
 @import './vars/vars.scss';
 
 .MovieCard {
-  max-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  background-color: grey;
 
   &.find-mode {
+    width: 500px;
+    height: 100%;
     position: absolute;
+    left: 0;
+    right: 0;
+    top: 0; 
+    margin: 0 auto;   
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
   
   .movie-details {
@@ -24,7 +33,8 @@
   }
 
   img {
-    width: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .desc {
