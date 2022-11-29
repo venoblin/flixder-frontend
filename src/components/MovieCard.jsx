@@ -1,10 +1,27 @@
 import '../styles/MovieCard.css'
+import { useContext } from 'react'
+import { UserContext } from '../contexts/UserContext'
 import { TMDB_IMG_BASE } from '../global'
+import { PostMovie } from '../services/services'
 
 const MovieCard = (props) => {
+  const { currentProfile } = useContext(UserContext)
+
   const viewMoreClickHandler = (evt) => {
     const parent = evt.target.parentNode
     parent.classList.toggle('expand')
+  }
+
+  const noHandler = (evt) => {
+    const card = evt.currentTarget.parentNode.parentNode.parentNode
+    card.remove()
+  }
+
+  const yesHandler = async (evt) => {
+    const card = evt.currentTarget.parentNode.parentNode.parentNode
+    const res = await PostMovie(props.movie, currentProfile)
+    console.log(res)
+    card.remove()
   }
 
   return props.findMode ? (
@@ -32,8 +49,8 @@ const MovieCard = (props) => {
         </div>
 
         <div className="inputs">
-          <button>No</button>
-          <button>Yes</button>
+          <button onClick={(evt) => noHandler(evt)}>No</button>
+          <button onClick={(evt) => yesHandler(evt)}>Yes</button>
         </div>
       </div>
     </div>

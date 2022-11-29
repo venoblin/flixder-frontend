@@ -21,7 +21,7 @@ const Find = () => {
     <div className="Find">
       <h1>Find</h1>
 
-      <MovieStack movies={movies} findMode={true} />
+      {movies && <MovieStack movies={movies} findMode={true} />}
     </div>
   )
 }
