@@ -1,1 +1,10 @@
-/*# sourceMappingURL=App.css.map */
+.btn {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: block;
+}
+
+main {
+  padding-bottom: 5rem;
+}/*# sourceMappingURL=App.css.map */

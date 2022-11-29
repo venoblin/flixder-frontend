@@ -24,3 +24,31 @@ export const checkboxCheck = (stateArr, check) => {
   }
   return false
 }
+
+// returns tmdb ids in an array in a string divided by a character
+export const stringifyTmdbId = (arrToFormat, divider) => {
+  let str = ''
+
+  arrToFormat.forEach((item, idx) => {
+    idx < arrToFormat.length - 1
+      ? (str += `${item.tmdb_id}${divider}`)
+      : (str += item.tmdb_id)
+  })
+
+  return str
+}
+
+// picks random item from an array and returns it
+export const pickRandomItems = (arr) => {
+  let randItems = []
+  if (arr.length > 2) {
+    for (let i = 0; i < 2; i++) {
+      const randNum = Math.floor(Math.random() * arr.length)
+      randItems.push(arr[randNum])
+    }
+  } else {
+    randItems = [...arr]
+  }
+
+  return randItems
+}

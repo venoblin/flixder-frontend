@@ -1,0 +1,7 @@
+.MovieStack {
+  width: 100%;
+  min-height: 700px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}/*# sourceMappingURL=MovieStack.css.map */

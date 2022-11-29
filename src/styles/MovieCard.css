@@ -1,0 +1,41 @@
+.MovieCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.MovieCard.find-mode {
+  width: 500px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: 0 auto;
+}
+.MovieCard.find-mode img {
+  width: 100%;
+  height: 100%;
+}
+.MovieCard .movie-details {
+  width: 100%;
+  padding: 2rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: white;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0) 100%);
+}
+.MovieCard img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.MovieCard .desc {
+  display: none;
+}
+.MovieCard .movie-info.expand .desc {
+  display: block;
+}/*# sourceMappingURL=MovieCard.css.map */

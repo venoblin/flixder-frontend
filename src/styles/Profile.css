@@ -1,0 +1,25 @@
+.Profile .profile-card {
+  width: 100%;
+  background-color: gray;
+}
+.Profile .profile-card .profile-info {
+  display: flex;
+  justify-content: center;
+}
+.Profile .profile-card .profile-pic {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.Profile .profile-card .flag {
+  width: 75px;
+}
+.Profile .profile-card .provider-logo {
+  width: 50px;
+}
+.Profile .profile-card .btn {
+  margin: 0 auto;
+}/*# sourceMappingURL=Profile.css.map */

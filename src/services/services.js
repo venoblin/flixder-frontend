@@ -41,11 +41,25 @@ export const PostProfile = async (data, user) => {
     const profileRes = await Client.post('/api/profiles', data)
     const userRes = await Client.get(`/api/users/${user.id}`)
 
-    const res = await Client.put(`/api/users/${user.id}`, {
+    await Client.put(`/api/users/${user.id}`, {
       profiles: [...userRes.data.profiles, profileRes.data._id]
     })
 
     return userRes.data
+  } catch (err) {
+    throw err
+  }
+}
+
+export const PostMovie = async (movie, profile) => {
+  try {
+    const flixderMovie = await Client.get(`/api/movies/tmdb/${movie.id}`)
+
+    if (flixderMovie.data.movie) {
+      return true
+    } else {
+      return false
+    }
   } catch (err) {
     throw err
   }
