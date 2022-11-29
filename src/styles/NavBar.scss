@@ -8,6 +8,7 @@
   align-items: center;
   background-color: black;
   color: white;
+  z-index: 10;
 
   .right-wrapper {
     display: flex;
@@ -15,7 +16,35 @@
   }
 
   .profile-switcher {
+    position: relative;
+    z-index: 10;
+
+    .drop-down,
+    .drop-down * {
+      max-height: 0;
+      padding: 0;
+      margin: 0;
+      font-size: 0;
+    }
+
+    .drop-down.show * {
+      max-height: initial;
+      padding: initial;
+      margin: initial;
+      font-size: initial;
+    }
+
+    .drop-down.show {
+      max-height: initial;
+      margin-top: 0.5rem;
+      padding: 1rem 2rem;
+      position: absolute;
+      right: 0;
+      background-color: darkslategrey;
+    }
+    
     .profile {
+      width: fit-content;
       cursor: pointer;
     }
     

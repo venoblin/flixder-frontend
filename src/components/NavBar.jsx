@@ -8,9 +8,16 @@ const NavBar = (props) => {
     useContext(UserContext)
   let navigate = useNavigate()
 
+  const toggleDropDown = () => {
+    const dropdown = document.querySelector('.drop-down')
+
+    dropdown.classList.toggle('show')
+  }
+
   const profileSwitchHandler = (profile) => {
     updateCurrentProfile(profile)
-    navigate('/find')
+    toggleDropDown()
+    navigate('/')
   }
 
   return (
@@ -20,7 +27,7 @@ const NavBar = (props) => {
       <div className="right-wrapper">
         {currentProfile && profiles && (
           <div className="profile-switcher">
-            <div className="current profile">
+            <div className="current profile" onClick={toggleDropDown}>
               <img
                 src={currentProfile.profile_pic.url}
                 alt={`${currentProfile.name} ${currentProfile.profile_pic.name}`}
