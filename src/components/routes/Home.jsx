@@ -6,11 +6,7 @@ import ProfileSelector from '../ProfileSelector'
 import Profile from '../Profile'
 
 const Home = () => {
-  const { profiles, updateProfiles, currentProfile } = useContext(UserContext)
-
-  useEffect(() => {
-    updateProfiles()
-  }, [])
+  const { profiles, currentProfile } = useContext(UserContext)
 
   return (
     <div className="Home">
