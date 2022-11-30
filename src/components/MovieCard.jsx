@@ -2,7 +2,7 @@ import '../styles/MovieCard.css'
 import { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'
 import { TMDB_IMG_BASE } from '../global'
-import { PostMovie } from '../services/services'
+import { PostMovie } from '../services'
 
 const MovieCard = (props) => {
   const { currentProfile } = useContext(UserContext)
