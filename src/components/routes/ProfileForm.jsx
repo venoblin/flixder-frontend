@@ -1,5 +1,5 @@
 import '../../styles/ProfileNew.css'
-import { useContext, useState, useEffect } from 'react'
+import { useContext } from 'react'
 import { OptionsContext } from '../../contexts/OptionsContext'
 import { UserContext } from '../../contexts/UserContext'
 import { useNavigate } from 'react-router-dom'

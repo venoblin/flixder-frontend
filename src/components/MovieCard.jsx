@@ -1,11 +1,13 @@
 import '../styles/MovieCard.css'
 import { useContext } from 'react'
+import { OptionsContext } from '../contexts/OptionsContext'
 import { UserContext } from '../contexts/UserContext'
 import { TMDB_IMG_BASE } from '../global'
 import { PostMovie } from '../services'
 
 const MovieCard = (props) => {
-  const { currentProfile } = useContext(UserContext)
+  const { genres } = useContext(OptionsContext)
+  const { currentProfile, updateProfiles } = useContext(UserContext)
 
   const viewMoreClickHandler = (evt) => {
     const parent = evt.target.parentNode
@@ -19,8 +21,8 @@ const MovieCard = (props) => {
 
   const yesHandler = async (evt) => {
     const card = evt.currentTarget.parentNode.parentNode.parentNode
-    const res = await PostMovie(props.movie, currentProfile)
-    console.log(res)
+    await PostMovie(props.movie, currentProfile, genres)
+    updateProfiles()
     card.remove()
   }
 

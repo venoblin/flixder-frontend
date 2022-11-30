@@ -52,3 +52,25 @@ export const pickRandomItems = (arr) => {
 
   return randItems
 }
+
+// populates genres from tmdb to their corresponding genre in out db
+export const populateGenres = (movie, genres) => {
+  const arr = []
+  movie.genre_ids.forEach((genreId) => {
+    for (let genre of genres) {
+      if (genreId === genre.tmdb_id) {
+        arr.push(genre._id)
+      }
+    }
+  })
+
+  return arr
+}
+
+// gets the movies id array of profile and returns a new one with added items
+export const addFavMovie = (profile, movie) => {
+  const movies = profile.fav_movies
+  movies.push(movie._id)
+
+  return movies
+}
