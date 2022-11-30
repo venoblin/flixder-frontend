@@ -26,8 +26,10 @@ const MovieCard = (props) => {
     card.remove()
   }
 
-  return props.findMode ? (
-    <div className="MovieCard find-mode">
+  const classes = props.findMode ? 'MovieCard find-mode' : 'MovieCard'
+
+  return (
+    <div className={classes}>
       <img
         src={`${TMDB_IMG_BASE}${props.movie.poster_path}`}
         alt={`${props.movie.title} poster`}
@@ -50,35 +52,12 @@ const MovieCard = (props) => {
           </button>
         </div>
 
-        <div className="inputs">
-          <button onClick={(evt) => noHandler(evt)}>No</button>
-          <button onClick={(evt) => yesHandler(evt)}>Yes</button>
-        </div>
-      </div>
-    </div>
-  ) : (
-    <div className="MovieCard">
-      <img
-        src={`${TMDB_IMG_BASE}${props.movie.poster_path}`}
-        alt={`${props.movie.title} poster`}
-      />
-
-      <div className="movie-details">
-        <div className="movie-info">
-          <h2>{props.movie.title}</h2>
-
-          <div className="votes-container">
-            <p className="vote">{props.movie.vote_average}</p>
-
-            <p className="count">{`${props.movie.vote_count} votes`}</p>
+        {props.findMode && (
+          <div className="inputs">
+            <button onClick={(evt) => noHandler(evt)}>No</button>
+            <button onClick={(evt) => yesHandler(evt)}>Yes</button>
           </div>
-
-          <div className="desc">{props.movie.overview}</div>
-
-          <button onClick={(evt) => viewMoreClickHandler(evt)}>
-            View More
-          </button>
-        </div>
+        )}
       </div>
     </div>
   )
