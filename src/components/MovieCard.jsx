@@ -21,6 +21,7 @@ const MovieCard = (props) => {
 
   const yesHandler = async () => {
     await PostMovie(props.movie, currentProfile, genres)
+
     cardRef.current.remove()
   }
 

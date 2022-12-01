@@ -1,15 +1,20 @@
 import '../styles/Profile.css'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContext'
 import { TMDB_IMG_BASE } from '../global'
 import MovieStack from './MovieStack'
 
 const Profile = () => {
-  const { currentProfile, updateProfiles } = useContext(UserContext)
+  const { user, currentProfile, updateProfiles } = useContext(UserContext)
+  const [profileMovies, setProfileMovies] = useState(null)
 
   useEffect(() => {
-    updateProfiles()
+    updateProfiles(user)
+      .then(() => {
+        setProfileMovies(currentProfile.fav_movies)
+      })
+      .catch((err) => console.log(err))
   }, [])
 
   return (
@@ -59,7 +64,9 @@ const Profile = () => {
 
       <div className="movies">
         {currentProfile.fav_movies ? (
-          <MovieStack movies={currentProfile.fav_movies} findMode={false} />
+          profileMovies && (
+            <MovieStack movies={currentProfile.fav_movies} findMode={false} />
+          )
         ) : (
           <div>
             <p>You have no movies, start finding new things to watch!</p>

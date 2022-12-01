@@ -24,8 +24,8 @@ export const UserProvider = (props) => {
     localStorage.setItem('profile_id', profile._id)
   }
 
-  const updateProfiles = async (thisUser = user) => {
-    const userProfiles = await GetUserProfiles(thisUser)
+  const updateProfiles = async (user) => {
+    const userProfiles = await GetUserProfiles(user)
     setProfiles(userProfiles)
 
     const storedProfileId = localStorage.getItem('profile_id')

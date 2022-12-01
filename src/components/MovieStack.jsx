@@ -6,13 +6,14 @@ const MovieStack = (props) => {
 
   return (
     <div className={classes}>
-      {props.movies.map((movie) => (
-        <MovieCard
-          key={movie.id || movie._id}
-          movie={movie}
-          findMode={props.findMode}
-        />
-      ))}
+      {props.movies.length &&
+        props.movies.map((movie) => (
+          <MovieCard
+            key={movie.id || movie._id}
+            movie={movie}
+            findMode={props.findMode}
+          />
+        ))}
     </div>
   )
 }
