@@ -1,14 +1,9 @@
 import '../../styles/ProfileNew.css'
-import { useContext, useState, useEffect } from 'react'
+import { useContext } from 'react'
+import { OptionsContext } from '../../contexts/OptionsContext'
 import { UserContext } from '../../contexts/UserContext'
 import { useNavigate } from 'react-router-dom'
-import {
-  PostProfile,
-  GetRegions,
-  GetProviders,
-  GetImages,
-  GetGenres
-} from '../../services/services'
+import { PostProfile } from '../../services'
 import useForm from '../../hooks/useForm'
 import {
   inputChangeHandler,
@@ -17,6 +12,7 @@ import {
 } from '../../utils'
 
 const ProfileNew = () => {
+  const { regions, providers, images, genres } = useContext(OptionsContext)
   const { user, setUser, updateProfiles } = useContext(UserContext)
   const [formState, setFormState, resetFormState] = useForm({
     name: '',
@@ -25,29 +21,7 @@ const ProfileNew = () => {
     providers: [],
     fav_genres: []
   })
-  const [regions, setRegions] = useState([])
-  const [providers, setProviders] = useState([])
-  const [images, setImages] = useState([])
-  const [genres, setGenres] = useState([])
   let navigate = useNavigate()
-
-  const getFormOptions = () => {
-    GetRegions()
-      .then((res) => setRegions(res))
-      .catch((err) => console.log(err))
-
-    GetProviders()
-      .then((res) => setProviders(res))
-      .catch((err) => console.log(err))
-
-    GetImages()
-      .then((res) => setImages(res))
-      .catch((err) => console.log(err))
-
-    GetGenres()
-      .then((res) => setGenres(res))
-      .catch((err) => console.log(err))
-  }
 
   const submitHandler = async (evt) => {
     evt.preventDefault()
@@ -57,10 +31,6 @@ const ProfileNew = () => {
     resetFormState()
     navigate('/')
   }
-
-  useEffect(() => {
-    getFormOptions()
-  }, [])
 
   return (
     <div className="ProfileNew">

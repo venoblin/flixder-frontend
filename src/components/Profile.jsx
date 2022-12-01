@@ -1,11 +1,16 @@
 import '../styles/Profile.css'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContext'
 import { TMDB_IMG_BASE } from '../global'
+import MovieStack from './MovieStack'
 
 const Profile = () => {
-  const { currentProfile } = useContext(UserContext)
+  const { currentProfile, updateProfiles } = useContext(UserContext)
+
+  useEffect(() => {
+    updateProfiles()
+  }, [])
 
   return (
     <div className="Profile">
@@ -53,8 +58,8 @@ const Profile = () => {
       </div>
 
       <div className="movies">
-        {currentProfile.fav_movies.length ? (
-          <div>Movies</div>
+        {currentProfile.fav_movies ? (
+          <MovieStack movies={currentProfile.fav_movies} findMode={false} />
         ) : (
           <div>
             <p>You have no movies, start finding new things to watch!</p>

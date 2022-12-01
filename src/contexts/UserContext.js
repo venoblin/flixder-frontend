@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from 'react'
 import useToggle from '../hooks/useToggle'
 import { CheckSession } from '../services/auth'
-import { GetUserProfiles } from '../services/services'
+import { GetUserProfiles } from '../services'
 
 export const UserContext = createContext()
 

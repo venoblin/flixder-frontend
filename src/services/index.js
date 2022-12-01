@@ -1,4 +1,5 @@
 import Client from './api'
+import { populateGenres, addFavMovie } from '../utils'
 
 export const GetRegions = async () => {
   try {
@@ -51,14 +52,38 @@ export const PostProfile = async (data, user) => {
   }
 }
 
-export const PostMovie = async (movie, profile) => {
+export const PostMovie = async (movie, profile, genres) => {
   try {
     const flixderMovie = await Client.get(`/api/movies/tmdb/${movie.id}`)
 
     if (flixderMovie.data.movie) {
-      return true
+      const newMovies = addFavMovie(profile, movie)
+      await Client.put(`/api/profiles/${profile._id}`, {
+        fav_movies: newMovies
+      })
+
+      return flixderMovie.data.movie
     } else {
-      return false
+      const genreIds = populateGenres(movie, genres)
+      const newMovie = {
+        tmdb_id: movie.id,
+        poster_path: movie.poster_path,
+        backdrop_path: movie.backdrop_path,
+        title: movie.title,
+        release_date: movie.release_date,
+        overview: movie.overview,
+        vote_average: movie.vote_average,
+        vote_count: movie.vote_count,
+        genre_ids: genreIds
+      }
+      const res = await Client.post('/api/movies', newMovie)
+
+      const newMovies = addFavMovie(profile, res.data)
+      await Client.put(`/api/profiles/${profile._id}`, {
+        fav_movies: newMovies
+      })
+
+      return res.data
     }
   } catch (err) {
     throw err
