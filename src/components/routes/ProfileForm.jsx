@@ -13,7 +13,7 @@ import {
 
 const ProfileNew = () => {
   const { regions, providers, images, genres } = useContext(OptionsContext)
-  const { user, setUser, updateProfiles } = useContext(UserContext)
+  const { user, updateProfiles, updateCurrentProfile } = useContext(UserContext)
   const [formState, setFormState, resetFormState] = useForm({
     name: '',
     profile_pic: '635484ed14c0720b4276ffd5',
@@ -26,7 +26,8 @@ const ProfileNew = () => {
   const submitHandler = async (evt) => {
     evt.preventDefault()
 
-    await PostProfile(formState, user)
+    const profile = await PostProfile(formState, user)
+    updateCurrentProfile(profile)
     updateProfiles()
     resetFormState()
     navigate('/')

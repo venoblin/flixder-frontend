@@ -24,6 +24,11 @@ export const UserProvider = (props) => {
     localStorage.setItem('profile_id', profile._id)
   }
 
+  const resetCurrentProfile = () => {
+    setCurrentProfile(null)
+    localStorage.removeItem('profile_id')
+  }
+
   const updateProfiles = async (user) => {
     const userProfiles = await GetUserProfiles(user)
     setProfiles(userProfiles)
@@ -62,6 +67,7 @@ export const UserProvider = (props) => {
         updateProfiles,
         currentProfile,
         updateCurrentProfile,
+        resetCurrentProfile,
         authenticated,
         toggleAuthenticated,
         handleLogout

@@ -2,17 +2,25 @@ import '../styles/MovieCard.css'
 import { useContext, useRef } from 'react'
 import { OptionsContext } from '../contexts/OptionsContext'
 import { UserContext } from '../contexts/UserContext'
-import { PostMovie } from '../services'
+import { PostMovie, UpdateProfile } from '../services'
 import { TMDB_IMG_BASE } from '../global'
 
 const MovieCard = (props) => {
   const { genres } = useContext(OptionsContext)
-  const { currentProfile } = useContext(UserContext)
+  const { currentProfile, updateCurrentProfile } = useContext(UserContext)
   const cardRef = useRef()
   const movieInfoRef = useRef()
 
   const viewMoreHandler = () => {
     movieInfoRef.current.classList.toggle('expand')
+  }
+
+  const deleteHandler = async () => {
+    const newMovies = currentProfile.fav_movies.filter(
+      (movie) => movie._id !== props.movie._id
+    )
+    updateCurrentProfile({ ...currentProfile, fav_movies: newMovies })
+    await UpdateProfile({ fav_movies: newMovies }, currentProfile)
   }
 
   const noHandler = () => {
@@ -49,12 +57,18 @@ const MovieCard = (props) => {
           <button onClick={viewMoreHandler}>View More</button>
         </div>
 
-        {props.findMode && (
-          <div className="inputs">
-            <button onClick={noHandler}>No</button>
-            <button onClick={yesHandler}>Yes</button>
-          </div>
-        )}
+        <div className="inputs">
+          {props.findMode ? (
+            <div>
+              <button onClick={noHandler}>No</button>
+              <button onClick={yesHandler}>Yes</button>
+            </div>
+          ) : (
+            <div>
+              <button onClick={deleteHandler}>Delete</button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

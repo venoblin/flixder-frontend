@@ -2,12 +2,20 @@ import '../styles/Profile.css'
 import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContext'
+import { DeleteProfile } from '../services'
 import { TMDB_IMG_BASE } from '../global'
 import MovieStack from './MovieStack'
 
 const Profile = () => {
-  const { user, currentProfile, updateProfiles } = useContext(UserContext)
+  const { user, currentProfile, resetCurrentProfile, updateProfiles } =
+    useContext(UserContext)
   const [profileMovies, setProfileMovies] = useState(null)
+
+  const deleteHandler = async () => {
+    await DeleteProfile(currentProfile)
+    updateProfiles(user)
+    resetCurrentProfile()
+  }
 
   useEffect(() => {
     updateProfiles(user)
@@ -60,6 +68,8 @@ const Profile = () => {
         <Link className="btn" to="/find">
           Find New Movies!
         </Link>
+
+        <button onClick={deleteHandler}>Delete Profile</button>
       </div>
 
       <div className="movies">
