@@ -25,7 +25,7 @@ const NavBar = (props) => {
       <Link to="/">Flixder</Link>
 
       <div className="right-wrapper">
-        {currentProfile && profiles && (
+        {currentProfile && profiles ? (
           <div className="profile-switcher">
             <div className="current profile" onClick={toggleDropDown}>
               <img
@@ -56,6 +56,10 @@ const NavBar = (props) => {
                 <Link onClick={handleLogout}>Sign Out</Link>
               </div>
             </div>
+          </div>
+        ) : (
+          <div>
+            <Link onClick={handleLogout}>Sign Out</Link>
           </div>
         )}
       </div>
