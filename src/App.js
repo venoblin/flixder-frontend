@@ -2,6 +2,7 @@ import './styles/App.css'
 import { useContext } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { UserContext } from './contexts/UserContext'
+import ScrollToTopHandler from './ScrollToTopHandler'
 import NavBar from './components/NavBar'
 import Home from './components/routes/Home'
 import Find from './components/routes/Find'
@@ -14,6 +15,8 @@ const App = () => {
 
   return (
     <div className="App">
+      <ScrollToTopHandler />
+
       {authenticated && (
         <header>
           <NavBar />
