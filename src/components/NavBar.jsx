@@ -25,7 +25,7 @@ const NavBar = (props) => {
       <Link to="/">Flixder</Link>
 
       <div className="right-wrapper">
-        {currentProfile && profiles ? (
+        {currentProfile && profiles.length ? (
           <div className="profile-switcher">
             <div className="current profile" onClick={toggleDropDown}>
               <img

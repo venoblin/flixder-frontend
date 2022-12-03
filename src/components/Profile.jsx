@@ -9,7 +9,6 @@ import MovieStack from './MovieStack'
 const Profile = () => {
   const { user, currentProfile, resetCurrentProfile, updateProfiles } =
     useContext(UserContext)
-  const [profileMovies, setProfileMovies] = useState([])
 
   const deleteHandler = async () => {
     await DeleteProfile(currentProfile)
@@ -19,10 +18,6 @@ const Profile = () => {
 
   useEffect(() => {
     updateProfiles(user)
-      .then(() => {
-        setProfileMovies(currentProfile.fav_movies)
-      })
-      .catch((err) => console.log(err))
   }, [])
 
   return (

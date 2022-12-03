@@ -8,12 +8,12 @@ export const UserContext = createContext()
 export const UserProvider = (props) => {
   const [authenticated, toggleAuthenticated] = useToggle(false)
   const [user, setUser] = useState(null)
-  const [profiles, setProfiles] = useState(null)
+  const [profiles, setProfiles] = useState([])
   const [currentProfile, setCurrentProfile] = useState(null)
 
   const handleLogout = () => {
     setUser(null)
-    setProfiles(null)
+    setProfiles([])
     setCurrentProfile(null)
     toggleAuthenticated()
     localStorage.clear()
