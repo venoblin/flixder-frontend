@@ -14,17 +14,8 @@ const Home = () => {
         <Profile />
       ) : (
         <div>
-          {profiles ? (
-            <div>
-              <ProfileSelector profiles={profiles} />
-              <Link to="/profiles/new">Create Profile</Link>
-            </div>
-          ) : (
-            <div>
-              <p>Create a profile to start searching!</p>
-              <Link to="/profiles/new">Create Profile</Link>
-            </div>
-          )}
+          <ProfileSelector profiles={profiles} />
+          <Link to="/profiles/new">Create Profile</Link>
         </div>
       )}
     </div>
