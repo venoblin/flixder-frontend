@@ -26,7 +26,7 @@ const NavBar = (props) => {
 
       <div className="right-wrapper">
         {currentProfile && profiles.length ? (
-          <div className="profile-switcher">
+          <div className="profile-switcher" ref={props.profileSwitcherRef}>
             <div className="current profile" onClick={toggleDropDown}>
               <img
                 src={currentProfile.profile_pic.url}
@@ -34,7 +34,7 @@ const NavBar = (props) => {
               />
             </div>
 
-            <div className="drop-down">
+            <div className="drop-down" ref={props.dropDownRef}>
               {profiles.map(
                 (profile) =>
                   profile._id !== currentProfile._id && (

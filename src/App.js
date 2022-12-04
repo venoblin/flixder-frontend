@@ -1,8 +1,8 @@
 import './styles/App.css'
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { UserContext } from './contexts/UserContext'
-import ScrollToTopHandler from './ScrollToTopHandler'
+import { containsElem } from './utils'
 import NavBar from './components/NavBar'
 import Home from './components/routes/Home'
 import Find from './components/routes/Find'
@@ -12,14 +12,23 @@ import ProfileForm from './components/routes/ProfileForm'
 
 const App = () => {
   const { authenticated } = useContext(UserContext)
+  const profileSwitcherRef = useRef()
+  const dropDownRef = useRef()
+
+  const clickHandler = (evt) => {
+    const target = evt.target
+    const isInNav = containsElem(profileSwitcherRef.current, target)
+    if (!isInNav) dropDownRef.current.classList.remove('show')
+  }
 
   return (
-    <div className="App">
-      <ScrollToTopHandler />
-
+    <div className="App" onClick={(evt) => clickHandler(evt)}>
       {authenticated && (
         <header>
-          <NavBar />
+          <NavBar
+            profileSwitcherRef={profileSwitcherRef}
+            dropDownRef={dropDownRef}
+          />
         </header>
       )}
 
