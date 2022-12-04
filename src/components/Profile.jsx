@@ -2,19 +2,22 @@ import '../styles/Profile.css'
 import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContext'
+import { DeleteProfile } from '../services'
 import { TMDB_IMG_BASE } from '../global'
 import MovieStack from './MovieStack'
 
 const Profile = () => {
-  const { user, currentProfile, updateProfiles } = useContext(UserContext)
-  const [profileMovies, setProfileMovies] = useState(null)
+  const { user, currentProfile, resetCurrentProfile, updateProfiles } =
+    useContext(UserContext)
+
+  const deleteHandler = async () => {
+    await DeleteProfile(currentProfile)
+    updateProfiles(user)
+    resetCurrentProfile()
+  }
 
   useEffect(() => {
     updateProfiles(user)
-      .then(() => {
-        setProfileMovies(currentProfile.fav_movies)
-      })
-      .catch((err) => console.log(err))
   }, [])
 
   return (
@@ -39,19 +42,22 @@ const Profile = () => {
 
           <div className="right-wrapper">
             <div className="genres">
-              {currentProfile.fav_genres.map((genre) => (
-                <p key={genre._id}>{genre.name}</p>
+              {currentProfile.fav_genres.map((genre, i) => (
+                <div key={i}>
+                  <p>{genre.name}</p>
+                </div>
               ))}
             </div>
 
             <div className="providers">
-              {currentProfile.providers.map((provider) => (
-                <img
-                  key={provider._id}
-                  className="provider-logo"
-                  src={`${TMDB_IMG_BASE}${provider.logo_path}`}
-                  alt={`${provider.provider_name} logo`}
-                />
+              {currentProfile.providers.map((provider, i) => (
+                <div key={i}>
+                  <img
+                    className="provider-logo"
+                    src={`${TMDB_IMG_BASE}${provider.logo_path}`}
+                    alt={`${provider.provider_name} logo`}
+                  />
+                </div>
               ))}
             </div>
           </div>
@@ -60,18 +66,12 @@ const Profile = () => {
         <Link className="btn" to="/find">
           Find New Movies!
         </Link>
+
+        <button onClick={deleteHandler}>Delete Profile</button>
       </div>
 
       <div className="movies">
-        {currentProfile.fav_movies ? (
-          profileMovies && (
-            <MovieStack movies={currentProfile.fav_movies} findMode={false} />
-          )
-        ) : (
-          <div>
-            <p>You have no movies, start finding new things to watch!</p>
-          </div>
-        )}
+        <MovieStack movies={currentProfile.fav_movies} findMode={false} />
       </div>
     </div>
   )

@@ -46,7 +46,27 @@ export const PostProfile = async (data, user) => {
       profiles: [...userRes.data.profiles, profileRes.data._id]
     })
 
-    return userRes.data
+    return profileRes.data
+  } catch (err) {
+    throw err
+  }
+}
+
+export const UpdateProfile = async (data, profile) => {
+  try {
+    const res = await Client.put(`/api/profiles/${profile._id}`, data)
+
+    return res.data
+  } catch (err) {
+    throw err
+  }
+}
+
+export const DeleteProfile = async (profile) => {
+  try {
+    const res = await Client.delete(`/api/profiles/${profile._id}`)
+
+    return res.data
   } catch (err) {
     throw err
   }

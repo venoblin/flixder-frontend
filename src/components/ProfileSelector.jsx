@@ -3,25 +3,30 @@ import { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'
 
 const ProfileSelector = (props) => {
-  const { updateCurrentProfile } = useContext(UserContext)
+  const { profiles, updateCurrentProfile } = useContext(UserContext)
 
   return (
     <div className="ProfileSelector">
-      <h1>Select a profile!</h1>
+      {profiles.length ? (
+        <h1>Select a profile!</h1>
+      ) : (
+        <p>Create a profile to start searching!</p>
+      )}
 
       <div className="profiles">
-        {props.profiles.map((profile) => (
-          <div
-            key={profile._id}
-            className="profile-card"
-            onClick={() => updateCurrentProfile(profile)}
-          >
-            <img
-              src={profile.profile_pic.url}
-              alt={`${profile.name} ${profile.profile_pic.name}`}
-            />
-          </div>
-        ))}
+        {profiles &&
+          profiles.map((profile) => (
+            <div
+              key={profile._id}
+              className="profile-card"
+              onClick={() => updateCurrentProfile(profile)}
+            >
+              <img
+                src={profile.profile_pic.url}
+                alt={`${profile.name} ${profile.profile_pic.name}`}
+              />
+            </div>
+          ))}
       </div>
     </div>
   )

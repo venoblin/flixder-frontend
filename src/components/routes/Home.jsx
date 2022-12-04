@@ -6,7 +6,7 @@ import ProfileSelector from '../ProfileSelector'
 import Profile from '../Profile'
 
 const Home = () => {
-  const { profiles, currentProfile } = useContext(UserContext)
+  const { currentProfile } = useContext(UserContext)
 
   return (
     <div className="Home">
@@ -14,18 +14,8 @@ const Home = () => {
         <Profile />
       ) : (
         <div>
-          {profiles &&
-            (profiles.length ? (
-              <div>
-                <ProfileSelector profiles={profiles} />
-                <Link to="/profiles/new">Create Profile</Link>
-              </div>
-            ) : (
-              <div>
-                <p>Create a profile to start searching!</p>
-                <Link to="/profiles/new">Create Profile</Link>
-              </div>
-            ))}
+          <ProfileSelector />
+          <Link to="/profiles/new">Create Profile</Link>
         </div>
       )}
     </div>

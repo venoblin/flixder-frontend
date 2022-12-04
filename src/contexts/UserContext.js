@@ -8,12 +8,12 @@ export const UserContext = createContext()
 export const UserProvider = (props) => {
   const [authenticated, toggleAuthenticated] = useToggle(false)
   const [user, setUser] = useState(null)
-  const [profiles, setProfiles] = useState(null)
+  const [profiles, setProfiles] = useState([])
   const [currentProfile, setCurrentProfile] = useState(null)
 
   const handleLogout = () => {
     setUser(null)
-    setProfiles(null)
+    setProfiles([])
     setCurrentProfile(null)
     toggleAuthenticated()
     localStorage.clear()
@@ -22,6 +22,11 @@ export const UserProvider = (props) => {
   const updateCurrentProfile = (profile) => {
     setCurrentProfile(profile)
     localStorage.setItem('profile_id', profile._id)
+  }
+
+  const resetCurrentProfile = () => {
+    setCurrentProfile(null)
+    localStorage.removeItem('profile_id')
   }
 
   const updateProfiles = async (user) => {
@@ -62,6 +67,7 @@ export const UserProvider = (props) => {
         updateProfiles,
         currentProfile,
         updateCurrentProfile,
+        resetCurrentProfile,
         authenticated,
         toggleAuthenticated,
         handleLogout

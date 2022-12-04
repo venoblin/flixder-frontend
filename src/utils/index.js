@@ -74,3 +74,14 @@ export const addFavMovie = (profile, movie) => {
 
   return movies
 }
+
+// checks if a parent element contains a certain element
+export const containsElem = (parentElem, elem) => {
+  const children = parentElem.querySelectorAll('*')
+
+  for (let child of children) {
+    if (child === elem) return true
+  }
+
+  return false
+}

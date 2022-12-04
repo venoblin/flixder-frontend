@@ -13,7 +13,7 @@ import {
 
 const ProfileNew = () => {
   const { regions, providers, images, genres } = useContext(OptionsContext)
-  const { user, setUser, updateProfiles } = useContext(UserContext)
+  const { user, updateCurrentProfile } = useContext(UserContext)
   const [formState, setFormState, resetFormState] = useForm({
     name: '',
     profile_pic: '635484ed14c0720b4276ffd5',
@@ -26,8 +26,8 @@ const ProfileNew = () => {
   const submitHandler = async (evt) => {
     evt.preventDefault()
 
-    await PostProfile(formState, user)
-    updateProfiles()
+    const profile = await PostProfile(formState, user)
+    updateCurrentProfile(profile)
     resetFormState()
     navigate('/')
   }
@@ -77,11 +77,12 @@ const ProfileNew = () => {
             type="text"
             id="name"
             name="name"
-            placeholder="Profile name"
+            placeholder="Profile Name"
             value={formState.name}
             required
           />
 
+          <h3>Region</h3>
           <label htmlFor="region">Choose a region:</label>
           <select
             onChange={(evt) => inputChangeHandler(evt, formState, setFormState)}
@@ -98,9 +99,8 @@ const ProfileNew = () => {
           </select>
         </div>
 
+        <h3>Watch Providers</h3>
         <div className="providers-container">
-          <h2>Watch Providers</h2>
-
           {providers.map((provider) => (
             <div key={provider._id}>
               {checkboxCheck(formState.providers, provider._id) ? (
@@ -139,9 +139,8 @@ const ProfileNew = () => {
           ))}
         </div>
 
+        <h3>Favorite Genres</h3>
         <div className="genres-container">
-          <h2>Favorite Genres</h2>
-
           {genres.map((genre) => (
             <div key={genre._id}>
               {checkboxCheck(formState.fav_genres, genre._id) ? (

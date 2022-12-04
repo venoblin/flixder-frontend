@@ -25,8 +25,8 @@ const NavBar = (props) => {
       <Link to="/">Flixder</Link>
 
       <div className="right-wrapper">
-        {currentProfile && profiles && (
-          <div className="profile-switcher">
+        {currentProfile && profiles.length ? (
+          <div className="profile-switcher" ref={props.profileSwitcherRef}>
             <div className="current profile" onClick={toggleDropDown}>
               <img
                 src={currentProfile.profile_pic.url}
@@ -34,7 +34,7 @@ const NavBar = (props) => {
               />
             </div>
 
-            <div className="drop-down">
+            <div className="drop-down" ref={props.dropDownRef}>
               {profiles.map(
                 (profile) =>
                   profile._id !== currentProfile._id && (
@@ -56,6 +56,10 @@ const NavBar = (props) => {
                 <Link onClick={handleLogout}>Sign Out</Link>
               </div>
             </div>
+          </div>
+        ) : (
+          <div>
+            <Link onClick={handleLogout}>Sign Out</Link>
           </div>
         )}
       </div>
