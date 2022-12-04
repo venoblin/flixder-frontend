@@ -33,12 +33,13 @@ const Login = () => {
     <div className="Login">
       <h2>Login</h2>
 
-      <form onSubmit={(evt) => submitHandler(evt)}>
+      <form className="auth-form" onSubmit={(evt) => submitHandler(evt)}>
         <label htmlFor="email">Email</label>
         <input
           type="email"
           id="email"
           name="email"
+          placeholder="Email"
           required
           value={formState.email}
           onChange={(evt) => inputChangeHandler(evt, formState, setFormState)}
@@ -49,6 +50,7 @@ const Login = () => {
           type="password"
           id="password"
           name="password"
+          placeholder="Password"
           required
           value={formState.password}
           onChange={(evt) => inputChangeHandler(evt, formState, setFormState)}
@@ -57,9 +59,13 @@ const Login = () => {
         <button type="submit">Log In</button>
       </form>
 
-      <div className="register-prompt">
-        <h3>Don't have an account?</h3>
-        <Link to="/register">Register</Link>
+      <div className="auth-prompt">
+        <p>
+          Don't have an account?{' '}
+          <Link className="link" to="/register">
+            Register
+          </Link>
+        </p>
       </div>
     </div>
   )

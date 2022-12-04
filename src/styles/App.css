@@ -1,10 +1,82 @@
-.btn {
+.btn,
+button {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  padding: 0.5rem 0.75rem;
   display: block;
+  font-size: 1.5em;
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+  background-color: aquamarine;
+}
+
+h1,
+h2,
+h3 {
+  padding: 2rem 0 1rem 0;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 2.5em;
+}
+
+h3 {
+  font-size: 2em;
 }
 
 main {
-  padding-bottom: 5rem;
+  padding: 1rem 2rem 5rem 2rem;
+}
+
+form.auth-form label {
+  position: absolute;
+  left: -999999px;
+}
+form.auth-form input {
+  margin-bottom: 0.75rem;
+}
+form label[for=name],
+form label[for=region] {
+  position: absolute;
+  left: -999999px;
+}
+form input {
+  padding: 0.5rem 0.75rem;
+  display: block;
+  font-size: 1.5em;
+  border-radius: 0.25rem;
+  outline: none;
+}
+form select {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  outline: none;
+}
+form button {
+  margin-top: 1.5rem;
+}
+form .pics-container {
+  margin-bottom: 1rem;
+}
+form .genres-container div,
+form .providers-container div {
+  margin-bottom: 0.2rem;
+  display: flex;
+}
+form .genres-container div input,
+form .providers-container div input {
+  margin-right: 0.5rem;
+}
+
+.auth-prompt {
+  margin-top: 1rem;
 }/*# sourceMappingURL=App.css.map */

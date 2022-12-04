@@ -17,8 +17,11 @@ const App = () => {
 
   const clickHandler = (evt) => {
     const target = evt.target
-    const isInNav = containsElem(profileSwitcherRef.current, target)
-    if (!isInNav) dropDownRef.current.classList.remove('show')
+
+    if (profileSwitcherRef.current) {
+      const isInNav = containsElem(profileSwitcherRef.current, target)
+      if (!isInNav) dropDownRef.current.classList.remove('show')
+    }
   }
 
   return (
