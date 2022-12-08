@@ -40,6 +40,11 @@
     display: none;
   }
 
+  .inputs div {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .movie-info.expand {
 
     .desc {

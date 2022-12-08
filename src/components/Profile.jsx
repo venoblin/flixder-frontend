@@ -31,7 +31,7 @@ const Profile = () => {
               alt={`${currentProfile.name} ${currentProfile.profile_pic.name}`}
             />
 
-            <h2>{currentProfile.name}</h2>
+            <p className="name">{currentProfile.name}</p>
 
             <img
               className="flag"
@@ -63,11 +63,15 @@ const Profile = () => {
           </div>
         </div>
 
-        <Link className="btn" to="/find">
-          Find New Movies!
-        </Link>
+        <div className="inputs">
+          <Link className="btn" to="/find">
+            Find New Movies
+          </Link>
 
-        <button onClick={deleteHandler}>Delete Profile</button>
+          <button className="danger" onClick={deleteHandler}>
+            Delete Profile
+          </button>
+        </div>
       </div>
 
       <div className="movies">

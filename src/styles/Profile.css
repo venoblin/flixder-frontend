@@ -1,6 +1,14 @@
 .Profile .profile-card {
-  width: 100%;
-  background-color: gray;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: rgb(22, 22, 22);
+  border-radius: 25px;
+}
+.Profile .profile-card .left-wrapper {
+  margin-right: 1rem;
 }
 .Profile .profile-card .profile-info {
   display: flex;
@@ -9,10 +17,16 @@
 .Profile .profile-card .profile-pic {
   width: 200px;
   height: 200px;
+  border-radius: 10px;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
+}
+.Profile .profile-card .name {
+  padding: 1rem 0;
+  font-size: 2em;
+  font-weight: bold;
 }
 .Profile .profile-card .flag {
   width: 75px;
@@ -20,6 +34,17 @@
 .Profile .profile-card .provider-logo {
   width: 50px;
 }
-.Profile .profile-card .btn {
-  margin: 0 auto;
+.Profile .profile-card .providers {
+  margin-top: 1rem;
+  display: flex;
+}
+.Profile .profile-card .inputs {
+  display: flex;
+  justify-content: center;
+}
+.Profile .profile-card .inputs button {
+  margin-left: 1rem;
+}
+.Profile .movies {
+  padding-top: 2rem;
 }/*# sourceMappingURL=Profile.css.map */

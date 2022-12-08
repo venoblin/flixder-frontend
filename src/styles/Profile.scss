@@ -3,8 +3,15 @@
 .Profile {
 
   .profile-card {
-    width: 100%;
-    background-color: gray;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: rgb(22, 22, 22);
+    border-radius: 25px;
+
+    .left-wrapper {
+      margin-right: 1rem;
+    }
 
     .profile-info {
       display: flex;
@@ -14,8 +21,15 @@
     .profile-pic {
       width: 200px;
       height: 200px;
+      border-radius: 10px;
       object-fit: cover;
       object-position: center;
+    }
+
+    .name {
+      padding: 1rem 0;
+      font-size: 2em;
+      font-weight: bold;
     }
 
     .flag {
@@ -26,8 +40,22 @@
       width: 50px;
     }
 
-    .btn {
-      margin: 0 auto;
+    .providers {
+      margin-top: 1rem;
+      display: flex;
     }
+
+    .inputs {
+      display: flex;
+      justify-content: center;
+      
+      button {
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  .movies {
+    padding-top: 2rem;
   }
 }

@@ -53,19 +53,24 @@ const MovieCard = (props) => {
           </div>
 
           <div className="desc">{props.movie.overview}</div>
-
-          <button onClick={viewMoreHandler}>View More</button>
         </div>
 
         <div className="inputs">
           {props.findMode ? (
             <div>
-              <button onClick={noHandler}>No</button>
-              <button onClick={yesHandler}>Yes</button>
+              <button className="circular danger" onClick={noHandler}>
+                No
+              </button>
+              <button onClick={viewMoreHandler}>View More</button>
+              <button className="circular success" onClick={yesHandler}>
+                Yes
+              </button>
             </div>
           ) : (
             <div>
-              <button onClick={deleteHandler}>Delete</button>
+              <button className="danger" onClick={deleteHandler}>
+                Delete
+              </button>
             </div>
           )}
         </div>

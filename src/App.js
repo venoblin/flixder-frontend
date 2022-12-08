@@ -43,10 +43,14 @@ const App = () => {
             <Route path="/profiles/new" element={<ProfileForm />} />
           </Routes>
         ) : (
-          <Routes>
-            <Route path="/register" element={<Register />} />
-            <Route path="*" element={<Login />} />
-          </Routes>
+          <div>
+            <h1 className="logo">Flixder</h1>
+
+            <Routes>
+              <Route path="/register" element={<Register />} />
+              <Route path="*" element={<Login />} />
+            </Routes>
+          </div>
         )}
       </main>
     </div>

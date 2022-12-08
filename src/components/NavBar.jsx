@@ -22,9 +22,13 @@ const NavBar = (props) => {
 
   return (
     <nav className="NavBar">
-      <Link to="/">Flixder</Link>
+      <p className="logo">Flixder</p>
 
       <div className="right-wrapper">
+        <Link className="link home" to="/">
+          Home
+        </Link>
+
         {currentProfile && profiles.length ? (
           <div className="profile-switcher" ref={props.profileSwitcherRef}>
             <div className="current profile" onClick={toggleDropDown}>
@@ -52,14 +56,20 @@ const NavBar = (props) => {
               )}
 
               <div className="links">
-                <Link to="/profiles/new">Create Profile</Link>
-                <Link onClick={handleLogout}>Sign Out</Link>
+                <Link className="link" to="/profiles/new">
+                  Create Profile
+                </Link>
+                <Link className="link" onClick={handleLogout}>
+                  Sign Out
+                </Link>
               </div>
             </div>
           </div>
         ) : (
           <div>
-            <Link onClick={handleLogout}>Sign Out</Link>
+            <Link className="link" onClick={handleLogout}>
+              Sign Out
+            </Link>
           </div>
         )}
       </div>

@@ -15,7 +15,9 @@ const Home = () => {
       ) : (
         <div>
           <ProfileSelector />
-          <Link to="/profiles/new">Create Profile</Link>
+          <Link className="btn" to="/profiles/new">
+            Create Profile
+          </Link>
         </div>
       )}
     </div>

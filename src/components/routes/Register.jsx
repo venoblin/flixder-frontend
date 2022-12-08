@@ -33,9 +33,8 @@ const Register = () => {
 
   return (
     <div className="Register">
-      <h2>Register</h2>
-
       <form className="auth-form" onSubmit={(evt) => submitHandler(evt)}>
+        <h2>Register</h2>
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -70,14 +69,15 @@ const Register = () => {
         />
 
         <button type="submit">Register</button>
+        <div className="auth-prompt">
+          <p>
+            Already have an account?{' '}
+            <Link className="link" to="/">
+              Log In
+            </Link>
+          </p>
+        </div>
       </form>
-
-      <p className="auth-prompt">
-        Already have an account?{' '}
-        <Link className="link" to="/">
-          Log In
-        </Link>
-      </p>
     </div>
   )
 }

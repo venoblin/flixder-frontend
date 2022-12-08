@@ -1,0 +1,11 @@
+$greenColor: #2191FB;
+$blackColor: #23222a;
+$softGreyColor: #5f5e6a;
+$darkGreyColor: #373443;
+$whiteColor: #E7ECEF;
+$redColor: #F05D5E;
+
+@mixin defaultTransition($prop) {
+  transition: $prop 0.3s ease;
+}
+

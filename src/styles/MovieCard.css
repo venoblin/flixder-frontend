@@ -36,6 +36,10 @@
 .MovieCard .desc {
   display: none;
 }
+.MovieCard .inputs div {
+  display: flex;
+  justify-content: space-between;
+}
 .MovieCard .movie-info.expand .desc {
   display: block;
 }/*# sourceMappingURL=MovieCard.css.map */
