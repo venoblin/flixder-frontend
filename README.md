@@ -34,6 +34,15 @@
 
 ---
 
+### **_Future Features_**
+
+- Error handling
+- Refresh movies after swiping on all current ones
+- Fixing minor bugs
+- Swipe on movies with other people to pick something to watch
+
+---
+
 ### **_Credits_**
 
 #### Movie Info: [TMDB](https://developers.themoviedb.org/3/getting-started/introduction)
