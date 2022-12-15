@@ -1,4 +1,4 @@
-# Flixder Front-End
+# Flixder
 
 ## Jonathan Villagomez
 
@@ -8,17 +8,29 @@
 
 ---
 
+### [Demo](https://flixder-frontend.herokuapp.com/)
+
+---
+
 ### **_Description_**
 
-#### The front-end of my Flixder application. Flixder is an application that gathers random movies from your favorite genres and displays them in cards in front of you like a dating app. If you like a movie you swipe right and gets inserted in your movies to watch list. A fun way to find new movies to watch!
+#### Flixder is an application that gathers random movies from your favorite genres and displays them in cards in front of you like a dating app. If you like a movie you swipe right and gets inserted in your movies to watch list. A fun way to find new movies to watch!
 
 ---
 
 ### **_Technologies Used_**
 
 - React
-- JavaScript
-- CSS
+- SCSS
+- Node.js
+- Express
+- MongoDB
+
+---
+
+![Image](/project_info/screenshot01.png)
+
+![Image](/project_info/screenshot02.png)
 
 ---
 
