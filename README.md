@@ -23,7 +23,7 @@
 ### **_Technologies Used_**
 
 - React
-- SCSS
+- SASS
 - Node.js
 - Express
 - MongoDB
