@@ -77,12 +77,10 @@ export const PostMovie = async (movie, profile, genres) => {
     const flixderMovie = await Client.get(`/api/movies/tmdb/${movie.id}`)
 
     if (flixderMovie.data.movie) {
-      const newMovies = addFavMovie(profile, movie)
+      const newMovies = addFavMovie(profile, flixderMovie.data.movie)
       await Client.put(`/api/profiles/${profile._id}`, {
         fav_movies: newMovies
       })
-
-      return flixderMovie.data.movie
     } else {
       const genreIds = populateGenres(movie, genres)
       const newMovie = {
@@ -102,8 +100,6 @@ export const PostMovie = async (movie, profile, genres) => {
       await Client.put(`/api/profiles/${profile._id}`, {
         fav_movies: newMovies
       })
-
-      return res.data
     }
   } catch (err) {
     throw err

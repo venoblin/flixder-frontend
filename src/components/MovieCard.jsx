@@ -44,7 +44,7 @@ const MovieCard = (props) => {
 
       <div className="movie-details">
         <div className="movie-info" ref={movieInfoRef}>
-          <h2>{props.movie.title}</h2>
+          <h3>{props.movie.title}</h3>
 
           <div className="votes-container">
             <p className="vote">{props.movie.vote_average}</p>

@@ -19,7 +19,6 @@ const Find = () => {
 
   return (
     <div className="Find">
-      <h1>Find</h1>
 
       {movies.length && <MovieStack movies={movies} findMode={true} />}
     </div>
