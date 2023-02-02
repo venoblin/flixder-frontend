@@ -56,7 +56,7 @@ const NavBar = (props) => {
               )}
 
               <div className="links">
-                <Link className="link" to="/profiles/new">
+                <Link onClick={toggleDropDown} className="link" to="/profiles/new">
                   Create Profile
                 </Link>
                 <Link className="link" onClick={handleLogout}>
