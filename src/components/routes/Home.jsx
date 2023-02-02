@@ -1,5 +1,5 @@
 import '../../styles/Home.css'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../contexts/UserContext'
 import ProfileSelector from '../ProfileSelector'

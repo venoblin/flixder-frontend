@@ -7,7 +7,7 @@ import useForm from '../../hooks/useForm'
 import { inputChangeHandler } from '../../utils'
 
 const Login = () => {
-  const { setUser, toggleAuthenticated } = useContext(UserContext)
+  const { setUser, toggleAuthenticated, updateProfiles } = useContext(UserContext)
   const [formState, setFormState, resetFormState] = useForm({
     email: '',
     password: ''
@@ -21,6 +21,7 @@ const Login = () => {
       const payload = await SignInUser(formState)
       setUser(payload)
       toggleAuthenticated(true)
+      updateProfiles(payload)
       navigate('/')
     } catch (err) {
       console.log('There was an error!')
