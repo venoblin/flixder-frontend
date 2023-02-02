@@ -1,5 +1,9 @@
 @import './vars/vars.scss';
 
+h2 {
+  text-align: center;
+}
+
 form .pics-container {
   display: flex;
   flex-wrap: wrap;
