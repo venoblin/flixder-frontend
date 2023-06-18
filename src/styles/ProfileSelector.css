@@ -4,6 +4,7 @@
 }
 .ProfileSelector .profile-card {
   cursor: pointer;
+  margin: 0 0.25rem;
 }
 .ProfileSelector img {
   width: 200px;
