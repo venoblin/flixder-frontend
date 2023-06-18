@@ -153,7 +153,16 @@ form .providers-container div input {
   margin-top: 1rem;
 }
 
+@media (max-width: 600px) {
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
 @media (max-width: 550px) {
+  .MovieStack .MovieCard.find-mode {
+    width: 100%;
+  }
   .btn,
   button {
     font-size: 1.25em;
@@ -174,10 +183,6 @@ form .providers-container div input {
   }
   .profiles {
     justify-content: center;
-  }
-  main {
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
   form {
     padding-left: 1rem;
