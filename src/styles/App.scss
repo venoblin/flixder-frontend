@@ -161,6 +161,21 @@ form {
   margin-top: 1rem;
 }
 
+@media(max-width: 550px) {
+  .btn,
+  button {
+    font-size: 1.25em;
+  }
+
+  .profile-info {
+    flex-direction: column;
+
+    .left-wrapper {
+      margin-right: 0;
+    }
+  }
+}
+
 @media(max-width: 450px) {
   h1.logo {
     font-size: 2.5em;
