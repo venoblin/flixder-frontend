@@ -4,6 +4,7 @@ h2 {
 
 form .pics-container {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
 }
 form .pics-container img {
