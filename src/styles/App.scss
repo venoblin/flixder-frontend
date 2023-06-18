@@ -160,3 +160,17 @@ form {
 .auth-prompt {
   margin-top: 1rem;
 }
+
+@media(max-width: 450px) {
+  .Login,
+  .Register {
+    form {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    input {
+      width: 100%;
+    }
+  }
+}

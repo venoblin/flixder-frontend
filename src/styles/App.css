@@ -1,6 +1,5 @@
 .btn,
 button {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   padding: 0.5rem 0.75rem;
@@ -63,7 +62,6 @@ p,
 }
 
 .logo {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   padding: 1rem;
@@ -98,7 +96,6 @@ main {
 }
 
 form {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   padding: 2rem 2rem 4rem 2rem;
@@ -154,4 +151,16 @@ form .providers-container div input {
 
 .auth-prompt {
   margin-top: 1rem;
+}
+
+@media (max-width: 450px) {
+  .Login form,
+  .Register form {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .Login input,
+  .Register input {
+    width: 100%;
+  }
 }/*# sourceMappingURL=App.css.map */
