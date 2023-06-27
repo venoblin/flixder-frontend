@@ -8,7 +8,7 @@
 
 ---
 
-### [Demo](https://flixder-frontend.herokuapp.com/)
+### [Demo](https://flixder.netlify.app/)
 
 ### [Backend](https://github.com/VillagomezHJonathan/flixder-backend)
 
