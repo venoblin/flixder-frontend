@@ -1,12 +1,17 @@
+.ProfileSelector .btn {
+  margin: 3rem auto;
+}
 .ProfileSelector .profiles {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .ProfileSelector .profile-card {
+  margin: 0 0.5rem;
   cursor: pointer;
-  margin: 0 0.25rem;
 }
 .ProfileSelector img {
+  border-radius: 50%;
   width: 200px;
   height: 200px;
   -o-object-fit: cover;

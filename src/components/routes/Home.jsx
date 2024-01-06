@@ -13,12 +13,7 @@ const Home = () => {
       {currentProfile ? (
         <Profile />
       ) : (
-        <div>
-          <ProfileSelector />
-          <Link className="btn" to="/profiles/new">
-            Create Profile
-          </Link>
-        </div>
+        <ProfileSelector />
       )}
     </div>
   )
