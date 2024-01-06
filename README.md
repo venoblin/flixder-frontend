@@ -56,7 +56,6 @@ Flixder is an application that gathers random movies from your favorite genres a
 
 
 ### Built With
-
 * React
 * SASS
 * Node.js
