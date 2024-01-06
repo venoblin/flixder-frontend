@@ -38,7 +38,7 @@
 ## About The Project
 
 <p align="center">
-  <img src="project-info/flixder-demo.gif" width="650" />
+  <img src="project-info/flixder.gif" width="650" />
 </p>
 
 <p align="center">
