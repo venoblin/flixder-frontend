@@ -38,6 +38,10 @@
 ## About The Project
 
 <p align="center">
+  <img src="project-info/flixder-demo.gif" width="650" />
+</p>
+
+<p align="center">
   <img src="project-info/screenshot01.png" width="650" />
 </p>
 
