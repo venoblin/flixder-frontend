@@ -24,7 +24,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">Aboscreenshot01.pngut The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -47,6 +47,10 @@
 
 <p align="center">
   <img src="project-info/screenshot02.png" width="650" />
+</p>
+
+<p align="center">
+  <img src="project-info/screenshot03.png" width="650" />
 </p>
 
 Flixder is an application that gathers random movies from your favorite genres and displays them in cards in front of you like a dating app. If you like a movie you swipe right and gets inserted in your movies to watch list. A fun way to find new movies to watch!
