@@ -22,12 +22,12 @@ const NavBar = (props) => {
 
   return (
     <nav className="NavBar">
-      <p className="logo">Flixder</p>
-
+      <Link className="link home logo" to="/">
+        Flixder
+      </Link>
+      
       <div className="right-wrapper">
-        <Link className="link home" to="/">
-          Home
-        </Link>
+        
 
         {currentProfile && profiles.length ? (
           <div className="profile-switcher" ref={props.profileSwitcherRef}>

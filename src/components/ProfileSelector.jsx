@@ -23,6 +23,8 @@ const ProfileSelector = () => {
                 src={profile.profile_pic.url}
                 alt={`${profile.name} ${profile.profile_pic.name}`}
                 />
+
+                <p className='profile-name'>{profile.name}</p>
               </div>
             ))}
           </div>
