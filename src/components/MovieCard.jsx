@@ -51,7 +51,7 @@ const MovieCard = (props) => {
         src={`${TMDB_IMG_BASE}${props.movie.poster_path}`}
         alt={`${props.movie.title} poster`}
       />
-
+      
       <div className="movie-details">
         <div className="movie-info" ref={movieInfoRef}>
           <h3>{props.movie.title}</h3>
