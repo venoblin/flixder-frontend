@@ -1,4 +1,5 @@
-import { createContext, useState} from 'react'
+import { createContext, useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import useToggle from '../hooks/useToggle'
 
 export const UtilitiesContext = createContext()
@@ -6,7 +7,8 @@ export const UtilitiesContext = createContext()
 export const UtilitiesProvider = (props) => {
   const [isLoading, toggleIsLoading] = useToggle()
   const [isShowing, toggleIsShowing] = useToggle()
-  const [popUpMsg, setPopUpMsg] = useState>('')
+  const [popUpMsg, setPopUpMsg] = useState('')
+  const { pathname } = useLocation()
 
   const load = (promise) => {
     toggleIsLoading()
@@ -27,6 +29,10 @@ export const UtilitiesProvider = (props) => {
   const dismissPopUp = () => {
     toggleIsShowing()
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
   
   return (
     <UtilitiesContext.Provider value={{load, showPopUp}}>

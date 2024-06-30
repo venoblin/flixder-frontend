@@ -5,14 +5,17 @@ import { UserContext } from '../../contexts/UserContext'
 import { SignInUser } from '../../services/auth'
 import useForm from '../../hooks/useForm'
 import { inputChangeHandler } from '../../utils'
+import { UtilitiesContext } from '../../contexts/UtilitiesContext'
 
 const Login = () => {
   const { setUser, toggleAuthenticated, updateProfiles } = useContext(UserContext)
+  const utilitiesContext = useContext(UtilitiesContext)
   const [formState, setFormState, resetFormState] = useForm({
     email: '',
     password: ''
   })
   let navigate = useNavigate()
+  // utilitiesContext.
 
   const submitHandler = async (evt) => {
     evt.preventDefault()
