@@ -2,12 +2,15 @@ import '../../styles/Register.css'
 import { useNavigate, Link } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import { RegisterUser } from '../../services/auth'
+import { SignInUser } from '../../services/auth'
 import { inputChangeHandler } from '../../utils'
 import { useContext } from 'react'
 import { UtilitiesContext } from '../../contexts/UtilitiesContext'
+import { UserContext } from '../../contexts/UserContext'
 
 const Register = () => {
   const utilitiesContext = useContext(UtilitiesContext)
+  const { setUser, toggleAuthenticated, updateProfiles } = useContext(UserContext)
   const [formState, setFormState, resetFormState] = useForm({
     email: '',
     password: '',
@@ -23,14 +26,13 @@ const Register = () => {
     }
     
     try {
-      if (formState.password === formState.confirmPassword) {
-        await utilitiesContext.load(RegisterUser({
-          email: formState.email,
-          password: formState.password
-        }))
-  
-        navigate('/login')
-      }
+        await utilitiesContext.load(RegisterUser(formState))
+
+        const payload = await utilitiesContext.load(SignInUser(formState))
+        setUser(payload)
+        toggleAuthenticated(true)
+        updateProfiles(payload)
+        navigate('/')
     } catch {
       utilitiesContext.showPopUp('Email already in use!')
     }
