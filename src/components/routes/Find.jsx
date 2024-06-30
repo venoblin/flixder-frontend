@@ -4,6 +4,7 @@ import { UserContext } from '../../contexts/UserContext'
 import { GetTmdbMovies } from '../../services/tmdbServices'
 import MovieStack from '../MovieStack'
 import { UtilitiesContext } from '../../contexts/UtilitiesContext'
+import MovieCard from '../MovieCard'
 
 const Find = () => {
   const utilitiesContext = useContext(UtilitiesContext)
@@ -26,7 +27,17 @@ const Find = () => {
   return (
     <div className="Find">
 
-      {movies.length && <MovieStack movies={movies} findMode={true} />}
+      <div className='movies-container'>
+        {movies.length && (
+          movies.map((movie) => (
+            <MovieCard 
+              key={movie.id || movie._id} 
+              movie={movie}
+              findMode={true}
+            />
+          ))
+        )}
+      </div>
     </div>
   )
 }
