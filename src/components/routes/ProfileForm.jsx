@@ -10,8 +10,10 @@ import {
   checkboxChangeHandler,
   checkboxCheck
 } from '../../utils'
+import { UtilitiesContext } from '../../contexts/UtilitiesContext'
 
 const ProfileNew = () => {
+  const utilitiesContext = useContext(UtilitiesContext)
   const { regions, providers, images, genres } = useContext(OptionsContext)
   const { user, updateCurrentProfile } = useContext(UserContext)
   const [formState, setFormState, resetFormState] = useForm({
@@ -26,10 +28,16 @@ const ProfileNew = () => {
   const submitHandler = async (evt) => {
     evt.preventDefault()
 
-    const profile = await PostProfile(formState, user)
-    updateCurrentProfile(profile)
-    resetFormState()
-    navigate('/')
+    try {
+      const profile = await utilitiesContext.load(PostProfile(formState, user))
+      updateCurrentProfile(profile)
+      resetFormState()
+      navigate('/')
+    } catch {
+      utilitiesContext.showPopUp('Error in posting profile!')
+    }
+
+    
   }
 
   return (

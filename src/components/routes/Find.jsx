@@ -3,14 +3,20 @@ import { useEffect, useState, useContext } from 'react'
 import { UserContext } from '../../contexts/UserContext'
 import { GetTmdbMovies } from '../../services/tmdbServices'
 import MovieStack from '../MovieStack'
+import { UtilitiesContext } from '../../contexts/UtilitiesContext'
 
 const Find = () => {
+  const utilitiesContext = useContext(UtilitiesContext)
   const { currentProfile } = useContext(UserContext)
   const [movies, setMovies] = useState([])
 
   const getMovies = async () => {
-    const res = await GetTmdbMovies(currentProfile)
-    setMovies(res)
+    try {
+      const res = await utilitiesContext.load(GetTmdbMovies(currentProfile))
+      setMovies(res)
+    } catch {
+      utilitiesContext.showPopUp('Error in getting movies!')
+    }
   }
 
   useEffect(() => {

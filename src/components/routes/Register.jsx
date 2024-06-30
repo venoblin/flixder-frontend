@@ -3,8 +3,11 @@ import { useNavigate, Link } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import { RegisterUser } from '../../services/auth'
 import { inputChangeHandler } from '../../utils'
+import { useContext } from 'react'
+import { UtilitiesContext } from '../../contexts/UtilitiesContext'
 
 const Register = () => {
+  const utilitiesContext = useContext(UtilitiesContext)
   const [formState, setFormState, resetFormState] = useForm({
     email: '',
     password: '',
@@ -15,17 +18,21 @@ const Register = () => {
   const submitHandler = async (evt) => {
     evt.preventDefault()
 
-    if (
-      formState.password &&
-      formState.confirmPassword &&
-      formState.password === formState.confirmPassword
-    ) {
-      await RegisterUser({
-        email: formState.email,
-        password: formState.password
-      })
-
-      navigate('/login')
+    if (formState.password !== formState.confirmPassword) {
+      return utilitiesContext.showPopUp('Passwords don\'t match!')
+    }
+    
+    try {
+      if (formState.password === formState.confirmPassword) {
+        await utilitiesContext.load(RegisterUser({
+          email: formState.email,
+          password: formState.password
+        }))
+  
+        navigate('/login')
+      }
+    } catch {
+      utilitiesContext.showPopUp('Email already in use!')
     }
 
     resetFormState()

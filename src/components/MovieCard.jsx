@@ -4,8 +4,10 @@ import { OptionsContext } from '../contexts/OptionsContext'
 import { UserContext } from '../contexts/UserContext'
 import { PostMovie, UpdateProfile } from '../services'
 import { TMDB_IMG_BASE } from '../global'
+import { UtilitiesContext } from '../contexts/UtilitiesContext'
 
 const MovieCard = (props) => {
+  const utilitiesContext = useContext(UtilitiesContext)
   const { genres } = useContext(OptionsContext)
   const { currentProfile, updateCurrentProfile } = useContext(UserContext)
   const cardRef = useRef()
@@ -16,11 +18,15 @@ const MovieCard = (props) => {
   }
 
   const deleteHandler = async () => {
-    const newMovies = currentProfile.fav_movies.filter(
-      (movie) => movie._id !== props.movie._id
-    )
-    updateCurrentProfile({ ...currentProfile, fav_movies: newMovies })
-    await UpdateProfile({ fav_movies: newMovies }, currentProfile)
+    try {
+      await utilitiesContext.load(UpdateProfile({ fav_movies: newMovies }, currentProfile))
+      const newMovies = currentProfile.fav_movies.filter(
+        (movie) => movie._id !== props.movie._id
+      )
+      updateCurrentProfile({ ...currentProfile, fav_movies: newMovies })
+    } catch {
+      utilitiesContext.showPopUp('Error in deleting movie')
+    }
   }
 
   const noHandler = () => {
@@ -28,9 +34,13 @@ const MovieCard = (props) => {
   }
 
   const yesHandler = async () => {
-    await PostMovie(props.movie, currentProfile, genres)
+    try {
+      await utilitiesContext.load(PostMovie(props.movie, currentProfile, genres))
 
-    cardRef.current.remove()
+      cardRef.current.remove()
+    } catch {
+      utilitiesContext.showPopUp('Error in posting movie')
+    }
   }
 
   const classes = props.findMode ? 'MovieCard find-mode' : 'MovieCard'
