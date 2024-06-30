@@ -15,19 +15,18 @@ const Login = () => {
     password: ''
   })
   let navigate = useNavigate()
-  // utilitiesContext.
-
+  
   const submitHandler = async (evt) => {
     evt.preventDefault()
-
+    
     try {
-      const payload = await SignInUser(formState)
+      const payload = await utilitiesContext.load(SignInUser(formState))
       setUser(payload)
       toggleAuthenticated(true)
       updateProfiles(payload)
       navigate('/')
     } catch (err) {
-      console.log('There was an error!')
+      utilitiesContext.showPopUp('Invalid email or password!')
     }
 
     resetFormState()

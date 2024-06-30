@@ -1,3 +1,4 @@
+import '../styles/UtilitiesContext.css'
 import { createContext, useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import useToggle from '../hooks/useToggle'
@@ -27,6 +28,7 @@ export const UtilitiesProvider = (props) => {
   }
 
   const dismissPopUp = () => {
+    setPopUpMsg('')
     toggleIsShowing()
   }
 
