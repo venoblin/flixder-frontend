@@ -70,7 +70,7 @@ export const populateGenres = (movie, genres) => {
 // gets the movies id array of profile and returns a new one with added items
 export const addFavMovie = (profile, movie) => {
   const movies = profile.fav_movies
-  movies.push(movie._id)
+  movies.push(movie)
 
   return movies
 }
