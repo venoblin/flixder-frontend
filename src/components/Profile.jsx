@@ -5,15 +5,21 @@ import { UserContext } from '../contexts/UserContext'
 import { DeleteProfile } from '../services'
 import { TMDB_IMG_BASE } from '../global'
 import MovieStack from './MovieStack'
+import { UtilitiesContext } from '../contexts/UtilitiesContext'
 
 const Profile = () => {
   const { user, currentProfile, resetCurrentProfile, updateProfiles } =
     useContext(UserContext)
+  const utilitiesContext = useContext(UtilitiesContext)
 
   const deleteHandler = async () => {
-    await DeleteProfile(currentProfile)
-    updateProfiles(user)
-    resetCurrentProfile()
+    try {
+      await utilitiesContext.load(DeleteProfile(currentProfile))
+      updateProfiles(user)
+      resetCurrentProfile()
+    } catch (err) {
+      utilitiesContext.showPopUp(err.data.message)
+    }
   }
 
   useEffect(() => {

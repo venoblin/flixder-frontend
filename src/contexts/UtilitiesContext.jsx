@@ -6,7 +6,7 @@ export const UtilitiesContext = createContext()
 export const UtilitiesProvider = (props) => {
   const [isLoading, toggleIsLoading] = useToggle()
   const [isShowing, toggleIsShowing] = useToggle()
-  const [componentToShow, setComponentToShow] = useState>(<p></p>)
+  const [popUpMsg, setPopUpMsg] = useState>('')
 
   const load = (promise) => {
     toggleIsLoading()
@@ -19,8 +19,8 @@ export const UtilitiesProvider = (props) => {
     })
   }
 
-  const showPopUp = (component) => {
-    setComponentToShow(component)
+  const showPopUp = (msg) => {
+    setPopUpMsg(msg)
     toggleIsShowing()
   }
 
@@ -40,9 +40,7 @@ export const UtilitiesProvider = (props) => {
 
       {isShowing && 
         <div className='pop-up'>
-          {componentToShow != null && 
-            componentToShow
-          }
+          <p>{popUpMsg}</p>
           <button onClick={dismissPopUp}>Ok</button>
         </div>
       }
