@@ -1,5 +1,4 @@
 .Profile .profile-card {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   margin: 0 auto;
@@ -47,4 +46,7 @@
 }
 .Profile .movies {
   padding-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }/*# sourceMappingURL=Profile.css.map */

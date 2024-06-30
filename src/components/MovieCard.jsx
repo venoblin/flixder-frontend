@@ -19,10 +19,10 @@ const MovieCard = (props) => {
 
   const deleteHandler = async () => {
     try {
-      await utilitiesContext.load(UpdateProfile({ fav_movies: newMovies }, currentProfile))
       const newMovies = currentProfile.fav_movies.filter(
         (movie) => movie._id !== props.movie._id
       )
+      await utilitiesContext.load(UpdateProfile({ fav_movies: newMovies }, currentProfile))
       updateCurrentProfile({ ...currentProfile, fav_movies: newMovies })
     } catch {
       utilitiesContext.showPopUp('Error in deleting movie')

@@ -6,6 +6,7 @@ import { DeleteProfile } from '../services'
 import { TMDB_IMG_BASE } from '../global'
 import MovieStack from './MovieStack'
 import { UtilitiesContext } from '../contexts/UtilitiesContext'
+import MovieCard from './MovieCard'
 
 const Profile = () => {
   const { user, currentProfile, resetCurrentProfile, updateProfiles } =
@@ -81,7 +82,19 @@ const Profile = () => {
       </div>
 
       <div className="movies">
-        <MovieStack movies={currentProfile.fav_movies} findMode={false} />
+        {currentProfile.fav_movies.length ? (
+          currentProfile.fav_movies.map((movie) => (
+            <MovieCard
+              key={movie.id || movie._id}
+              movie={movie}
+              findMode={false}
+            />
+          ))
+        ) : (
+          <div>
+            <p>There are currently no movies!</p>
+          </div>
+        )}
       </div>
     </div>
   )

@@ -2,10 +2,9 @@ import '../styles/MovieStack.css'
 import MovieCard from './MovieCard'
 
 const MovieStack = (props) => {
-  const classes = props.findMode ? 'MovieStack find-mode' : 'MovieStack'
 
   return (
-    <div className={classes}>
+    <div className='MovieStack'>
       {props.movies.length ? (
         props.movies.map((movie) => (
           <MovieCard
