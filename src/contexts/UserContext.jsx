@@ -1,11 +1,13 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect, useContext } from 'react'
 import useToggle from '../hooks/useToggle'
 import { CheckSession } from '../services/auth'
 import { GetUserProfiles } from '../services'
+import { UtilitiesContext } from './UtilitiesContext'
 
 export const UserContext = createContext()
 
 export const UserProvider = (props) => {
+  const utilitiesContext = useContext(UtilitiesContext)
   const [authenticated, toggleAuthenticated] = useToggle(false)
   const [user, setUser] = useState(null)
   const [profiles, setProfiles] = useState([])
@@ -44,11 +46,15 @@ export const UserProvider = (props) => {
   }
 
   const checkToken = async () => {
-    const userRes = await CheckSession()
-    setUser(userRes)
-    toggleAuthenticated(true)
+    try {
+      const userRes = await utilitiesContext.load(CheckSession())
+      setUser(userRes)
+      toggleAuthenticated(true)
 
-    updateProfiles(userRes)
+      updateProfiles(userRes)
+    } catch {
+      utilitiesContext.showPopUp('Error authenticating!')
+    }
   }
 
   useEffect(() => {
