@@ -1,20 +1,20 @@
 import '../styles/MovieCard.css'
-import { useContext, useRef } from 'react'
+import { useContext } from 'react'
 import { OptionsContext } from '../contexts/OptionsContext'
 import { UserContext } from '../contexts/UserContext'
 import { PostMovie, UpdateProfile } from '../services'
 import { TMDB_IMG_BASE } from '../global'
 import { UtilitiesContext } from '../contexts/UtilitiesContext'
+import useToggle from '../hooks/useToggle'
 
 const MovieCard = (props) => {
   const utilitiesContext = useContext(UtilitiesContext)
   const { genres } = useContext(OptionsContext)
   const { currentProfile, updateCurrentProfile } = useContext(UserContext)
-  const cardRef = useRef()
-  const movieInfoRef = useRef()
+  const [isShowing, toggleIsShowing] = useToggle()
 
   const viewMoreHandler = () => {
-    movieInfoRef.current.classList.toggle('expand')
+    toggleIsShowing()
   }
 
   const deleteHandler = async () => {
@@ -30,14 +30,14 @@ const MovieCard = (props) => {
   }
 
   const noHandler = () => {
-    cardRef.current.remove()
+    props.removeMovie(props.movie)
   }
 
   const yesHandler = async () => {
     try {
       await utilitiesContext.load(PostMovie(props.movie, currentProfile, genres))
 
-      cardRef.current.remove()
+      props.removeMovie(props.movie)
     } catch {
       utilitiesContext.showPopUp('Error in posting movie')
     }
@@ -46,14 +46,14 @@ const MovieCard = (props) => {
   const classes = props.findMode ? 'MovieCard find-mode' : 'MovieCard'
 
   return (
-    <div className={classes} ref={cardRef}>
+    <div className={classes}>
       <img
         src={`${TMDB_IMG_BASE}${props.movie.poster_path}`}
         alt={`${props.movie.title} poster`}
       />
       
       <div className="movie-details">
-        <div className="movie-info" ref={movieInfoRef}>
+        <div className="movie-info">
           <h3>{props.movie.title}</h3>
 
           <div className="votes-container">
@@ -62,7 +62,9 @@ const MovieCard = (props) => {
             <p className="count">{`${props.movie.vote_count} votes`}</p>
           </div>
 
-          <div className="desc">{props.movie.overview}</div>
+          {isShowing && 
+            <div className="desc">{props.movie.overview}</div>
+          }
         </div>
 
         <div className="inputs">

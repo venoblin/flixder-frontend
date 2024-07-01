@@ -22,6 +22,14 @@ const Find = () => {
     }
   }
 
+  const removeMovie = (movieToRemove) => {
+    const newMovies = movies.filter(
+      (movie) => movie.id !== movieToRemove.id
+    )
+
+    setMovies([...newMovies])
+  }
+
   useEffect(() => {
     getMovies()
   }, [currentProfile])
@@ -35,6 +43,7 @@ const Find = () => {
             <MovieCard 
               key={movie.id || movie._id} 
               movie={movie}
+              removeMovie={removeMovie}
               findMode={true}
             />
           ))
