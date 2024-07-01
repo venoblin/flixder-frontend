@@ -2,16 +2,16 @@ import '../styles/NavBar.css'
 import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContext'
+import useToggle from '../hooks/useToggle'
 
 const NavBar = (props) => {
   const { profiles, currentProfile, updateCurrentProfile, handleLogout } =
     useContext(UserContext)
+  const [isShowing, toggleIsShowing] = useToggle()
   let navigate = useNavigate()
 
   const toggleDropDown = () => {
-    const dropdown = document.querySelector('.drop-down')
-
-    dropdown.classList.toggle('show')
+    toggleIsShowing()
   }
 
   const profileSwitchHandler = (profile) => {
@@ -38,32 +38,34 @@ const NavBar = (props) => {
               />
             </div>
 
-            <div className="drop-down" ref={props.dropDownRef}>
-              {profiles.map(
-                (profile) =>
-                  profile._id !== currentProfile._id && (
-                    <div
-                      key={profile._id}
-                      className="profile"
-                      onClick={() => profileSwitchHandler(profile)}
-                    >
-                      <img
-                        src={profile.profile_pic.url}
-                        alt={`${profile.name} ${profile.profile_pic.name}`}
-                      />
-                    </div>
-                  )
-              )}
-
-              <div className="links">
-                <Link onClick={toggleDropDown} className="link" to="/profiles/new">
-                  Create Profile
-                </Link>
-                <Link className="link" onClick={handleLogout}>
-                  Sign Out
-                </Link>
+            {isShowing &&
+              <div className="drop-down">
+                {profiles.map(
+                  (profile) =>
+                    profile._id !== currentProfile._id && (
+                      <div
+                        key={profile._id}
+                        className="profile"
+                        onClick={() => profileSwitchHandler(profile)}
+                      >
+                        <img
+                          src={profile.profile_pic.url}
+                          alt={`${profile.name} ${profile.profile_pic.name}`}
+                        />
+                      </div>
+                    )
+                )}
+  
+                <div className="links">
+                  <Link onClick={toggleDropDown} className="link" to="/profiles/new">
+                    Create Profile
+                  </Link>
+                  <Link className="link" onClick={handleLogout}>
+                    Sign Out
+                  </Link>
+                </div>
               </div>
-            </div>
+            }
           </div>
         ) : (
           <div>
