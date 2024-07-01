@@ -2,7 +2,6 @@ import '../../styles/Find.css'
 import { useEffect, useState, useContext } from 'react'
 import { UserContext } from '../../contexts/UserContext'
 import { GetTmdbMovies } from '../../services/tmdbServices'
-import MovieStack from '../MovieStack'
 import { UtilitiesContext } from '../../contexts/UtilitiesContext'
 import MovieCard from '../MovieCard'
 
@@ -14,6 +13,9 @@ const Find = () => {
   const getMovies = async () => {
     try {
       const res = await utilitiesContext.load(GetTmdbMovies(currentProfile))
+      if (res.length <= 0) {
+        getMovies()
+      }
       setMovies(res)
     } catch {
       utilitiesContext.showPopUp('Error in getting movies!')

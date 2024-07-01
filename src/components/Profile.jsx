@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContext'
 import { DeleteProfile } from '../services'
 import { TMDB_IMG_BASE } from '../global'
-import MovieStack from './MovieStack'
 import { UtilitiesContext } from '../contexts/UtilitiesContext'
 import MovieCard from './MovieCard'
 
