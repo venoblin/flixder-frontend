@@ -23,6 +23,10 @@ const Find = () => {
   }
 
   const removeMovie = (movieToRemove) => {
+    if (movies.length <= 1) {
+      getMovies()
+    }
+    
     const newMovies = movies.filter(
       (movie) => movie.id !== movieToRemove.id
     )

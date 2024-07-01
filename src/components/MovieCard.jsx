@@ -23,7 +23,7 @@ const MovieCard = (props) => {
         (movie) => movie._id !== props.movie._id
       )
       await utilitiesContext.load(UpdateProfile({ fav_movies: newMovies }, currentProfile))
-      updateCurrentProfile({ ...currentProfile, fav_movies: newMovies })
+      updateCurrentProfile({...currentProfile, fav_movies: newMovies})
     } catch {
       utilitiesContext.showPopUp('Error in deleting movie')
     }
