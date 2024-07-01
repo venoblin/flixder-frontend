@@ -23,10 +23,13 @@ const ProfileNew = () => {
     providers: [],
     fav_genres: []
   })
-  let navigate = useNavigate()
+  const navigate = useNavigate()
 
   const submitHandler = async (evt) => {
     evt.preventDefault()
+    if (formState.providers.length <= 0 && formState.fav_genres.length <= 0) {
+      return utilitiesContext.showPopUp('Need at least one provider and one favorite genre!')
+    }
 
     try {
       const profile = await utilitiesContext.load(PostProfile(formState, user))
@@ -36,8 +39,6 @@ const ProfileNew = () => {
     } catch {
       utilitiesContext.showPopUp('Error in posting profile!')
     }
-
-    
   }
 
   return (
@@ -48,28 +49,16 @@ const ProfileNew = () => {
         <div className="pics-container">
           {images.map((img) => (
             <div className="pic" key={img._id}>
-              {formState.profile_pic === img._id ? (
                 <input
                   type="radio"
                   name="profile_pic"
                   id={img._id}
                   value={img._id}
-                  checked
+                  checked={formState.profile_pic === img._id ? true : false}
                   onChange={(evt) =>
                     inputChangeHandler(evt, formState, setFormState)
                   }
                 />
-              ) : (
-                <input
-                  type="radio"
-                  name="profile_pic"
-                  id={img._id}
-                  value={img._id}
-                  onChange={(evt) =>
-                    inputChangeHandler(evt, formState, setFormState)
-                  }
-                />
-              )}
 
               <label htmlFor={img._id}>
                 <img src={img.url} alt={img.title} />
