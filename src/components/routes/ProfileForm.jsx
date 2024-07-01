@@ -100,12 +100,11 @@ const ProfileNew = () => {
         <div className="providers-container">
           {providers.map((provider) => (
             <div key={provider._id}>
-              {checkboxCheck(formState.providers, provider._id) ? (
                 <input
                   type="checkbox"
                   id={provider._id}
                   name={provider._id}
-                  checked
+                  checked={checkboxCheck(formState.providers, provider._id) ? true : false}
                   onChange={(evt) =>
                     checkboxChangeHandler(
                       evt,
@@ -115,21 +114,6 @@ const ProfileNew = () => {
                     )
                   }
                 />
-              ) : (
-                <input
-                  type="checkbox"
-                  id={provider._id}
-                  name={provider._id}
-                  onChange={(evt) =>
-                    checkboxChangeHandler(
-                      evt,
-                      formState,
-                      setFormState,
-                      'providers'
-                    )
-                  }
-                />
-              )}
 
               <label htmlFor={provider._id}>{provider.provider_name}</label>
             </div>
@@ -140,12 +124,11 @@ const ProfileNew = () => {
         <div className="genres-container">
           {genres.map((genre) => (
             <div key={genre._id}>
-              {checkboxCheck(formState.fav_genres, genre._id) ? (
                 <input
                   type="checkbox"
                   id={genre._id}
                   name={genre._id}
-                  checked
+                  checked={checkboxCheck(formState.fav_genres, genre._id) ? true : false}
                   onChange={(evt) =>
                     checkboxChangeHandler(
                       evt,
@@ -155,21 +138,6 @@ const ProfileNew = () => {
                     )
                   }
                 />
-              ) : (
-                <input
-                  type="checkbox"
-                  id={genre._id}
-                  name={genre._id}
-                  onChange={(evt) =>
-                    checkboxChangeHandler(
-                      evt,
-                      formState,
-                      setFormState,
-                      'fav_genres'
-                    )
-                  }
-                />
-              )}
 
               <label htmlFor={genre._id}>{genre.name}</label>
             </div>
