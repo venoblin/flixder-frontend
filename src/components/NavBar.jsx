@@ -33,12 +33,12 @@ const NavBar = (props) => {
               <img
                 src={currentProfile.profile_pic.url}
                 alt={`${currentProfile.name} ${currentProfile.profile_pic.name}`}
-                ref={props.profileSwitcherRef}
+                ref={props.profileImgRef}
               />
             </div>
 
             {props.isShowing &&
-              <div className="drop-down">
+              <div className="drop-down" ref={props.dropDownRef}>
                 {profiles.map(
                   (profile) =>
                     profile._id !== currentProfile._id && (
@@ -56,7 +56,7 @@ const NavBar = (props) => {
                 )}
 
                 <div className="links">
-                  <Link onClick={toggleDropDown} className="link" to="/profiles/new">
+                  <Link className="link" to="/profiles/new">
                     Create Profile
                   </Link>
                   <Link className="link" onClick={handleLogout}>

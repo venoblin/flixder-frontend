@@ -13,10 +13,15 @@ import useToggle from './hooks/useToggle'
 const App = () => {
   const { authenticated } = useContext(UserContext)
   const [isShowing, toggleIsShowing] = useToggle()
-  const profileSwitcherRef = useRef()
+  const profileImgRef = useRef()
+  const dropDownRef = useRef()
 
   const toggleDropDown = (evt) => {
-    if (isShowing && profileSwitcherRef.current !== evt.target) {
+    if (
+      isShowing &&
+      profileImgRef.current !== evt.target &&
+      dropDownRef.current !== evt.target
+    ) {
       toggleIsShowing()
     }
   }
@@ -28,7 +33,8 @@ const App = () => {
           <NavBar
             isShowing={isShowing}
             toggleIsShowing={toggleIsShowing}
-            profileSwitcherRef={profileSwitcherRef}
+            profileImgRef={profileImgRef}
+            dropDownRef={dropDownRef}
           />
         </header>
       )}

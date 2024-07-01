@@ -41,7 +41,6 @@
 .NavBar .profile-switcher .profile {
   width: -moz-fit-content;
   width: fit-content;
-  cursor: pointer;
 }
 .NavBar .profile-switcher .profile img {
   width: 75px;

@@ -16,7 +16,7 @@ const Find = () => {
       if (res.length <= 0) {
         getMovies()
       }
-      setMovies(res)
+      setMovies([...res])
     } catch {
       utilitiesContext.showPopUp('Error in getting movies!')
     }
