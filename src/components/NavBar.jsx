@@ -2,16 +2,14 @@ import '../styles/NavBar.css'
 import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContext'
-import useToggle from '../hooks/useToggle'
 
 const NavBar = (props) => {
   const { profiles, currentProfile, updateCurrentProfile, handleLogout } =
     useContext(UserContext)
-  const [isShowing, toggleIsShowing] = useToggle()
   let navigate = useNavigate()
 
   const toggleDropDown = () => {
-    toggleIsShowing()
+    props.toggleIsShowing()
   }
 
   const profileSwitchHandler = (profile) => {
@@ -30,15 +28,16 @@ const NavBar = (props) => {
         
 
         {currentProfile && profiles.length ? (
-          <div className="profile-switcher" ref={props.profileSwitcherRef}>
+          <div className="profile-switcher">
             <div className="current profile" onClick={toggleDropDown}>
               <img
                 src={currentProfile.profile_pic.url}
                 alt={`${currentProfile.name} ${currentProfile.profile_pic.name}`}
+                ref={props.profileSwitcherRef}
               />
             </div>
 
-            {isShowing &&
+            {props.isShowing &&
               <div className="drop-down">
                 {profiles.map(
                   (profile) =>
@@ -55,7 +54,7 @@ const NavBar = (props) => {
                       </div>
                     )
                 )}
-  
+
                 <div className="links">
                   <Link onClick={toggleDropDown} className="link" to="/profiles/new">
                     Create Profile

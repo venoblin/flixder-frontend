@@ -2,35 +2,33 @@ import './styles/App.css'
 import { useContext, useRef } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { UserContext } from './contexts/UserContext'
-import { containsElem } from './utils'
 import NavBar from './components/NavBar'
 import Home from './components/routes/Home'
 import Find from './components/routes/Find'
 import Login from './components/routes/Login'
 import Register from './components/routes/Register'
 import ProfileForm from './components/routes/ProfileForm'
+import useToggle from './hooks/useToggle'
 
 const App = () => {
   const { authenticated } = useContext(UserContext)
+  const [isShowing, toggleIsShowing] = useToggle()
   const profileSwitcherRef = useRef()
-  const dropDownRef = useRef()
 
-  const clickHandler = (evt) => {
-    const target = evt.target
-
-    if (profileSwitcherRef.current) {
-      const isInNav = containsElem(profileSwitcherRef.current, target)
-      if (!isInNav) dropDownRef.current.classList.remove('show')
+  const toggleDropDown = (evt) => {
+    if (isShowing && profileSwitcherRef.current !== evt.target) {
+      toggleIsShowing()
     }
   }
 
   return (
-    <div className="App" onClick={(evt) => clickHandler(evt)}>
+    <div className="App" onClick={(evt) => toggleDropDown(evt)}>
       {authenticated && (
         <header>
           <NavBar
+            isShowing={isShowing}
+            toggleIsShowing={toggleIsShowing}
             profileSwitcherRef={profileSwitcherRef}
-            dropDownRef={dropDownRef}
           />
         </header>
       )}
